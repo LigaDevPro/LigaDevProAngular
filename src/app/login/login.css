@@ -83,3 +83,15 @@ input::placeholder {
   background-color: #1e5128;
   color: white;
 }
+
+.input-error {
+  color: rgb(163, 66, 66);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.btn-login {
+  margin-top: 15px;
+}
