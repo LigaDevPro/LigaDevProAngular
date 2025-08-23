@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz-wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic-VariableFont_opsz-wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* Resto de los estilos */
+:root {
+  --color-dark: #191a19;
+  --color-green-dark: #1e5128;
+  --color-green-light: #4e9f3d;
+  --color-green-pastel: #d8e9a8;
+}
+/* Reset basico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Estilo general del body */
+body {
+  background-color: var(--color-green-pastel);
+  color: var(--color-dark);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Títulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-green-dark);
+  font-weight: bold;
+}
+
+/* Enlaces */
+a {
+  color: var(--color-green-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-green-dark);
+  text-decoration: underline;
+}
+
+/* Botones genéricos */
+button {
+  background-color: var(--color-green-light);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-green-dark);
+}
+
+/* Contenedor reutilizable */
+.container {
+  width: 95%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Imagenes responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
