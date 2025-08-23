@@ -4,12 +4,14 @@ import { About } from './about/about';
 import { Dashboard } from './dashboard/dashboard';
 import { Login } from './login/login';
 import { Home } from './home/home';
+import { Register } from './register/register';
 
 
 export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'dashboard', component: Dashboard },
   { path: 'login', component: Login },
+  { path: 'register', component: Register },
   { path: '', component: Home },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', redirectTo: '/' },
