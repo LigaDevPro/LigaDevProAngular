@@ -1,0 +1,100 @@
+body {
+  background-color: #191a19;
+  color: #d8e9a8;
+}
+
+h1 {
+  color: #d8e9a8;
+}
+
+.summary-card {
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.bg-green {
+  background-color: #4e9f3d;
+}
+
+.bg-dark-green {
+  background-color: #1e5128;
+}
+
+.bg-light-green {
+  background-color: #d8e9a8;
+  color: #191a19;
+}
+
+.card-header {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.table th,
+.table td {
+  color: #191a19;
+}
+
+.table thead {
+  background-color: #d8e9a8;
+}
+
+.badge {
+  font-size: 0.9rem;
+}
+
+.card {
+  background-color: #454645;
+  color: #d8e9a8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+/* Responsividad para tarjetas resumen */
+@media (max-width: 768px) {
+  .summary-card {
+    text-align: center;
+    padding: 15px;
+  }
+
+  .summary-card .card-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* Ajuste de tabla en pantallas pequeñas */
+@media (max-width: 576px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .btn-sm {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+
+  .navbar-brand span {
+    display: none;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Botón Agregar centrado en pantallas chicas */
+@media (max-width: 768px) {
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+}
