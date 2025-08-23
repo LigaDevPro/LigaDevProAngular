@@ -1,6 +1,12 @@
+.container-about {
+  display: flex;
+  flex-direction: column;
+}
 .about-section {
   padding: 80px 0;
   background-color: var(--color-green-pastel);
+  display: flex;
+  flex-direction: column;
 }
 
 .about-header {
