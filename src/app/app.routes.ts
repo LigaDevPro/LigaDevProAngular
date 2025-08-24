@@ -5,6 +5,7 @@ import { Dashboard } from './dashboard/dashboard';
 import { Login } from './login/login';
 import { Home } from './home/home';
 import { Register } from './register/register';
+import { FormTournament } from './form-tournament/form-tournament';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'dashboard', component: Dashboard },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
+  { path: 'form-tournament', component: FormTournament },
   { path: '', component: Home },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', redirectTo: '/' },
