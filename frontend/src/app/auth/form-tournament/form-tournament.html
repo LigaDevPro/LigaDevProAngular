@@ -26,9 +26,9 @@
       <div class="field">
         <label for="nombre">Nombre del torneo</label>
         <input id="nombre" type="text" formControlName="nombre" placeholder="Ej: Copa LigaPro" />
-        <div class="error" *ngIf="formTournament.get('nombre')?.touched && formTournament.get('nombre')?.invalid">
-          <small *ngIf="formTournament.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
-          <small *ngIf="formTournament.get('nombre')?.errors?.['minlength']">Mínimo 3 caracteres.</small>
+        <div class="error" @if="formTournament.get('nombre')?.touched && formTournament.get('nombre')?.invalid">
+          <small @if="formTournament.get('nombre')?.errors?.['required']">El nombre es obligatorio.</small>
+          <small @if="formTournament.get('nombre')?.errors?.['minlength']">Mínimo 3 caracteres.</small>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
       <div class="field">
         <label for="fecha">Fecha</label>
         <input id="fecha" type="date" formControlName="fecha" />
-        <div class="error" *ngIf="formTournament.get('fecha')?.touched && formTournament.get('fecha')?.invalid">
+        <div class="error" @if="formTournament.get('fecha')?.touched && formTournament.get('fecha')?.invalid">
           <small>La fecha es obligatoria.</small>
         </div>
       </div>
@@ -45,9 +45,9 @@
       <div class="field field-ubicacion">
         <label for="ubicacion">Ubicación</label>
         <input id="ubicacion" type="text" formControlName="ubicacion" placeholder="Ej: Estadio Municipal" />
-        <div class="error" *ngIf="formTournament.get('ubicacion')?.touched && formTournament.get('ubicacion')?.invalid">
-          <small *ngIf="formTournament.get('ubicacion')?.errors?.['required']">La ubicación es obligatoria.</small>
-          <small *ngIf="formTournament.get('ubicacion')?.errors?.['minlength']">Mínimo 5 caracteres.</small>
+        <div class="error" @if="formTournament.get('ubicacion')?.touched && formTournament.get('ubicacion')?.invalid">
+          <small @if="formTournament.get('ubicacion')?.errors?.['required']">La ubicación es obligatoria.</small>
+          <small @if="formTournament.get('ubicacion')?.errors?.['minlength']">Mínimo 5 caracteres.</small>
         </div>
       </div>
 

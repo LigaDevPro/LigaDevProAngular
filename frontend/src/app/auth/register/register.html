@@ -30,13 +30,13 @@
           <input type="text" placeholder="Nombre de usuario" formControlName="username" />
         </div>
         <div
-          *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+          @if="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
           class="input-error"
         >
-          <small *ngIf="registerForm.get('username')?.errors?.['required']"
+          <small @if="registerForm.get('username')?.errors?.['required']"
             >El nombre es obligatorio</small
           >
-          <small *ngIf="registerForm.get('username')?.errors?.['minlength']"
+          <small @if="registerForm.get('username')?.errors?.['minlength']"
             >Mínimo 3 caracteres</small
           >
         </div>
@@ -47,13 +47,13 @@
           <input type="email" placeholder="Correo electrónico" formControlName="email" />
         </div>
         <div
-          *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          @if="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
           class="input-error"
         >
-          <small *ngIf="registerForm.get('email')?.errors?.['required']"
+          <small @if="registerForm.get('email')?.errors?.['required']"
             >El email es obligatorio</small
           >
-          <small *ngIf="registerForm.get('email')?.errors?.['email']"
+          <small @if="registerForm.get('email')?.errors?.['email']"
             >Formato de email inválido</small
           >
         </div>
@@ -64,16 +64,16 @@
           <input type="password" placeholder="Contraseña" formControlName="password" />
         </div>
         <div
-          *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          @if="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
           class="input-error"
         >
-          <small *ngIf="registerForm.get('password')?.errors?.['required']"
+          <small @if="registerForm.get('password')?.errors?.['required']"
             >La contraseña es obligatoria</small
           >
-          <small *ngIf="registerForm.get('password')?.errors?.['minlength']"
+          <small @if="registerForm.get('password')?.errors?.['minlength']"
             >Mínimo 6 caracteres</small
           >
-          <small *ngIf="registerForm.get('password')?.errors?.['pattern']"
+          <small @if="registerForm.get('password')?.errors?.['pattern']"
             >Solo letras, números y @ # _</small
           >
         </div>
@@ -88,7 +88,7 @@
           />
         </div>
         <div
-          *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
+          @if="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
           class="input-error"
         >
           <small>Las contraseñas no coinciden</small>
