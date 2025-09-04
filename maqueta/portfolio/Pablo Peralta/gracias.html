@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gracias por tu mensaje - Pablo Peralta</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .thanks-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+    .thanks-message {
+      background-color: rgba(30, 30, 30, 0.9);
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: fade-in 1s ease forwards;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      padding: 10px 25px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fondo animado (igual que en index.html) -->
+  <div id="particles-js"></div>
+  <div class="gradient-bg"></div>
+
+  <!-- Contenido principal -->
+  <div class="thanks-container">
+    <div class="thanks-message">
+      <i class="fas fa-check-circle fa-4x mb-4" style="color: #4CAF50;"></i>
+      <h1 class="display-4 mb-3">¡Gracias por tu mensaje!</h1>
+      <p class="lead mb-4">Tu mensaje fue enviado con éxito. Me pondré en contacto contigo lo antes posible.</p>
+      <a href="index.html" class="btn btn-primary mt-4">Volver al sitio</a>
+    </div>
+  </div>
+
+  <!-- Scripts necesarios -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Inicializar particles.js si existe el elemento
+    if(document.getElementById('particles-js')) {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 60 },
+          color: { value: '#ffffff' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5 },
+          size: { value: 3, random: true },
+          line_linked: { 
+            enable: true, 
+            distance: 150, 
+            color: '#ffffff', 
+            opacity: 0.4, 
+            width: 1 
+          },
+          move: { enable: true, speed: 2 }
+        },
+        interactivity: { detect_on: "canvas", events: { resize: true } }
+      });
+    }
+  </script>
+</body>
+</html>

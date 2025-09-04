@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio Profesional</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/img/favicon.png">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Fondo animado -->
+    <div id="particles-js"></div>
+    <div class="gradient-bg"></div>
+    <!-- Barra de navegación -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mi Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre-mi">Sobre mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#habilidades">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="d-flex align-items-center min-vh-100">
+        <div class="container text-center">
+            <img src="assets/img/perfil.jpg" alt="Foto de perfil" class="rounded-circle mb-4 profile-img">
+            <h1 class="display-4 fw-bold">Hola, soy Pablo Peralta</h1>
+            <p class="lead">Desarrollador Web | Desarrollador de Software</p>
+            <div class="social-icons mt-4">
+                <a href="https://github.com/Pablo4604" class="text-white mx-2"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/pabloperalta-keepcoding/" class="text-white mx-2"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://www.instagram.com/ppablo410/" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+            </div>
+            <a href="#proyectos" class="btn btn-primary btn-lg mt-4">Ver mis proyectos</a>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in">Sobre mí</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Quién soy</h3>
+                    <p>La dedicación, el compromiso, la eficiencia y la profesionalismo son pilares fundamentales que sustentan mi carrera, independientemente del sector profesional en el que trabaje.</p>
+                    <p>A través de los conocimientos adquiridos en el mundo IT, junto con una sólida ética laboral y una firme vocación de servicio, busco desarrollar una carrera en la industria del desarrollo de software, con el objetivo de asumir nuevos desafíos y, al hacerlo, contribuir al éxito de una organización.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Información personal</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Nombre:</strong> Pablo Emanuel Peralta</li>
+                        <li><strong>Edad:</strong> 36 años</li>
+                        <li><strong>Ubicación:</strong> Córdoba, Argentina</li>
+                        <li><strong>Email:</strong> pabloperalta4604@gmail.com</li>
+                    </ul>
+                    <a href="https://drive.google.com/file/d/1CfYOPWkQD5ltAM4wiPdueQaxT_BPqcWE/view?usp=drive_link" class="btn btn-outline-primary mt-3" target="_blank">Descargar CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Habilidades -->
+    <section id="habilidades" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in">Mis habilidades</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-code fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Desarrollo Web</h5>
+                            <p class="card-text">HTML, CSS, JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-gears fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Desarrollo de Software</h5>
+                            <p class="card-text">Python</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-server fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Backend</h5>
+                            <p class="card-text">Node.js, MySQL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mobile-alt fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Responsive Design</h5>
+                            <p class="card-text">Bootstrap, Media Queries, Flexbox</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h3 class="text-center mb-4">Nivel de habilidades técnicas</h3>
+                <div class="skill-bar mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>HTML - CSS</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>JavaScript</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>Git - GitHub</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>Node.js</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 60%"></div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- Sección Proyectos -->
+    <section id="proyectos" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in">Mis proyectos</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="assets/img/proyecto1.jpg" class="card-img-top" alt="Proyecto 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Aplicación Web</h5>
+                            <p class="card-text">Descripcion del proyecto LigaPro.</p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary">HTML</span>
+                                <span class="badge bg-primary">CSS</span>
+                                <span class="badge bg-primary">Angular</span>
+                            </div>
+                            <a href="https://github.com/LigaDevPro/LigaDevProRepo.git" class="btn btn-outline-primary">Ver proyecto</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="assets/img/proyecto2.jpg" class="card-img-top" alt="Proyecto 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Toolkit de Administración Jr.</h5>
+                            <p class="card-text">Conjunto de scripts en Bash para gestionar procesos, memoria, discos, usuarios y seguridad en sistemas Linux.</p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary">Linux</span>
+                                <span class="badge bg-primary">VirtualBox</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Ver proyecto</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <img src="assets/img/proyecto3.jpg" class="card-img-top" alt="Proyecto 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Software HydroSense</h5>
+                            <p class="card-text">Proyecto para transmitir datos desde terminales IoT a un dashboard en Grafana, usando Python como intermediario.</p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary">MQTT</span>
+                                <span class="badge bg-primary">MySQL</span>
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-primary">Grafana</span>
+                            </div>
+                            <a href="https://github.com/Pablo4604/HydroSense.git" class="btn btn-outline-primary">Ver proyecto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="https://github.com/Pablo4604" class="btn btn-primary">Ver más proyectos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in">Contacto</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h3>Información de contacto</h3>
+                    <p>Si estás interesado en trabajar conmigo, no dudes en contactarme.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Silvia Barrera 4126. Córdoba. Argentina.</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> 1163059795</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pabloperalta4604@gmail.com</li>
+                    </ul>
+                    <div class="social-icons mt-4">
+                        <a href="https://github.com/Pablo4604" class="text-white mx-2"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/in/pabloperalta-keepcoding/" class="text-white mx-2"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://www.instagram.com/ppablo410/" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form action="https://formsubmit.co/pabloperalta4604@gmail.com" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="gracias.html">
+                        <input type="hidden" name="_subject" value="Nuevo mensaje desde tu portfolio">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" name="mensaje" rows="5" autocomplete="off" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">© 2025 Pablo Peralta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Librería de partículas -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- JS personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>

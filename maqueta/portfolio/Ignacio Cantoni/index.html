@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/8a1644956c.js" crossorigin="anonymous"></script>
+  <script>
+  function mostrarFormulario() {
+    document.getElementById("formularioEmergente").style.display = "block";
+  }
+
+  function cerrarFormulario() {
+    document.getElementById("formularioEmergente").style.display = "none";
+  }
+  window.onclick = function(event) {
+    const modal = document.getElementById("formularioEmergente");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+</head>
+
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="logo">Ignacio Matías<span> Cantoni</span></div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#estudios">Estudios</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Ignacio Matías Cantoni</h1>
+          <h2>Desarrollador de software junior</h2>
+          <p>Estudio Desarrollo de Software y me estoy formando para trabajar como desarrollador, tanto en el frontend como en el backend.</p>
+          <p>Me interesa crear soluciones completas, desde el diseño de la interfaz hasta la lógica del servidor. 
+            Trabajo con tecnologías como HTML, CSS para el lado del cliente, y estoy aprendiendo 
+            a manejar el lado del servidor con bases de datos como MySQL. 
+            También uso herramientas como Figma y Canva cuando necesito diseñar interfaces claras y funcionales.</p>
+            <p>Aunque todavía no tengo experiencia laboral, estoy desarrollando proyectos por mi cuenta y en el ámbito 
+              académico que me ayudan a mejorar y aplicar lo que voy aprendiendo. Busco seguir creciendo como desarrollador 
+              full stack y empezar a trabajar en proyectos reales que aporten valor y me permitan seguir aprendiendo junto a otros.</p>
+          <div class="social-links">
+            <a href="https://github.com/IgnacioCantoni" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ignacio-cantoni-459136216/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <button class="btn" onclick="mostrarFormulario()">Contáctame</button>
+          <div id="formularioEmergente" class="modal">
+            <div class="modal-contenido">
+              <span class="cerrar" onclick="cerrarFormulario()">&times;</span>
+              <h2>Formulario de Contacto</h2>
+              <form>
+                <input type="text" placeholder="Tu nombre" required>
+                <input type="email" placeholder="Tu email" required>
+                <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                <button type="submit" class="btn">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+         <img src="img/perfil.png" alt="profile image">
+        </div>
+      </div>
+    </section>
+
+    <section id="estudios" class="estudios">
+      <h2 class="section-title">Estudios</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="date">2025 - Actualidad</span>
+            <h3>Desarrollador De Software</h3>
+            <h4>Instituto Superior Politécnico Córdoba</h4>
+            <p>Desarrollo de aplicaciones y sistemas utilizando lenguajes de programación.</p>
+            <ul class="skills">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>TYPESCRIPT</li>
+              <li>ANGULAR</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="date">2022 - 2023</span>
+            <h3>Diseño Web</h3>
+            <h4>Programa desde tu casa</h4>
+            <p>Diseño de sitios web atractivos y funcionales.</p>
+            <ul class="skills">
+              <li>HTML5</li>
+              <li>CSS3</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="date">2019</span>
+            <h3>Técnico en Electrónica</h3>
+            <h4>IPETyM Nº 257 DR. RENE FAVALORO</h4>
+            <p>Nivel Secundario</p>
+            <ul class="skills">
+              <li>Arduino</li>
+              <li>Python</li>
+            </ul>
+          </div>
+        </div>
+      </div> 
+    </section>
+
+    <section id="experiencia" class="experiencia">
+      <h2 class="section-title">Experiencia Laboral</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="date">2020 - 2021</span>
+            <h3>Distribución de mercadería</h3>
+            <h4>Grupo Arcor</h4>
+            <p>Reparto y distribución de mercadería.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="date">2019 - 2020</span>
+            <h3>Técnico en Electrónica</h3>
+            <h4>El mundo del control remoto</h4>
+            <p>Mantenimiento y reparaciones de dispositivos electrónicos.</p>
+            <ul class="skills">
+              <li>Arduino</li>
+              <li>Python</li>
+            </ul>
+          </div>
+        </div>
+      </div>  
+    </section>
+
+    <section id="proyectos" class="proyectos">
+      <h2 class="section-title">Proyectos Personales</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="img/Proyecto1.png" alt="proyecto 1">
+          </div>
+          <div class="project-info">
+            <h3>Diseño web - Emprendimiento taller Andrea</h3>
+            <p>Sitio web diseñado para gestionar y promocionar un emprendimiento de taller de artes, con un enfoque visual atractivo y funcionalidad básica.</p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://ignaciocantoni.github.io/Taller-Andrea/" target="_blank"><i class="fas fa-link"></i>Demo</a>
+              <a href="https://github.com/IgnacioCantoni/Taller-Andrea" target="_blank"><i class="fab fa-github"></i>Codigo</a>
+            </div>
+          </div>
+        </div>
+      
+        <div class="project-card">
+          <div class="project-img">
+            <img src="img/proyecto2.png" alt="proyecto 2">
+          </div>
+          <div class="project-info">
+            <h3>Toolkit de Administración Jr</h3>
+            <p>scripts Bash diseñado para facilitar tareas básicas de administración en sistemas Linux. 
+              Permite a usuarios sin experiencia técnica monitorear recursos, gestionar usuarios y aplicar controles de seguridad de forma sencilla desde la terminal.</p>
+            <div class="project-tech">
+              <span>LINUX</span>
+              <span>BASH</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Grupo-Sistemas-Operativo/ToolKit-Administracion" target="_blank"><i class="fab fa-github"></i>Codigo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Ignacio Matías Cantoni - Todos los derechos reservados</p>
+      <div class="social-links">
+          <a href="https://github.com/IgnacioCantoni" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ignacio-cantoni-459136216/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* Estilo global: fondo negro, texto blanco */
+body {
+  background-color: #141414;
+  color: #fff;
+}
+
+/* Hacer que los textos dentro de secciones sigan siendo blancos */
+section, header, nav {
+  background-color: transparent;
+  color: #fff;
+}
+.navbar.navbar-expand-lg {
+    background-color: #1B1B1B;
+    
+}
+
+
+/* Colores específicos para textos de elementos Bootstrap */
+.navbar .nav-link,
+.navbar-brand {
+  color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+  color: #0d6efd !important; /* Azul de Bootstrap */
+}
+
+/* Botón */
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+
+.navbar-nav.ms-auto{
+    margin-right: 2rem;
+
+}
+
+.skill{
+    background-color: #1B1B1B;
+}

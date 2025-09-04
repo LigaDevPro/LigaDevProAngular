@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Portafolio</title>
+    <meta
+      name="description"
+      content="Bienvenidos a mi portafolio, un escaparate de mi pasión por el desarrollo web y la creación de experiencias digitales únicas. Soy un desarrollador full-stack especializado en Next.js, TypeScript y Tailwind CSS. Mi enfoque combina código limpio, diseño responsivo y optimización SEO para entregar soluciones que destacan por su funcionalidad y estética."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navegación -->
+    <header>
+      <div class="container">
+        <h1 class="logo">Mi <span>Portafolio</span></h1>
+        <nav>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#idiomas">Idiomas</a></li>
+          </ul>
+        </nav>
+        <div class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sección de Inicio -->
+    <section id="inicio" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Hola, soy <span>Miguel Ivan Scaccia</span></h1>
+          <h2>Desarrollador Web</h2>
+          <p>Desarrollo experiencias digitales que las personas adoren usar.</p>
+          <div class="cta-buttons">
+            <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+            <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="/portfolio/Miguel Scaccia/assets/perfile-image.webp"
+            class="profile-image"
+            alt="Imagen de perfil de Miguel Ivan Scaccia"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi" class="about">
+      <div class="container">
+        <h2 class="section-title">Sobre Mí</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              Soy un desarrollador web apasionado con experiencia en la creación
+              de sitios web y aplicaciones atractivas y funcionales. Me
+              especializo en HTML, CSS y TypeScript, con un enfoque en crear
+              experiencias de usuario intuitivas y responsivas.
+            </p>
+            <p>
+              Mi objetivo es combinar mis habilidades técnicas y creativas para
+              desarrollar soluciones digitales que no solo se vean bien, sino
+              que también resuelvan problemas reales para los usuarios.
+            </p>
+            <div class="personal-info">
+              <div class="info-item">
+                <span class="info-title">Nombre:</span>
+                <span class="info-value">Miguel Ivan Scaccia</span>
+              </div>
+              <div class="info-item">
+                <span class="info-title">Email:</span>
+                <span class="info-value">miguel.scaccia1@gmail.com</span>
+              </div>
+              <div class="info-item">
+                <span class="info-title">Ubicación:</span>
+                <span class="info-value">Córdoba, Argentina</span>
+              </div>
+            </div>
+            <a
+              href="/portfolio/Miguel Scaccia/assets/CV Miguel Scaccia.pdf"
+              download
+              class="btn btn-primary"
+              >Descargar CV</a
+            >
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <h3>+1</h3>
+              <p>Año de Experiencia</p>
+            </div>
+            <div class="stat-item">
+              <h3>+15</h3>
+              <p>Proyectos Completados</p>
+            </div>
+            <div class="stat-item">
+              <h3>+10</h3>
+              <p>Clientes Satisfechos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Experiencia Laboral -->
+    <section id="experiencia" class="experience">
+      <div class="container">
+        <h2 class="section-title">Experiencia Laboral</h2>
+        <div class="experience-grid">
+          <div class="experience-item">
+            <h3>Desarrollador Full Stack</h3>
+            <h4><a href="https://kodear.dev" target="_blank">Kodear</a></h4>
+            <p class="experience-date">2024 - Presente (1 año)</p>
+            <p>
+              Como desarrollador Full Stack en Kodear, participo en el
+              desarrollo y mantenimiento de aplicaciones web modernas. Trabajo
+              con tecnologías como Next.js, TypeScript, Node.js y con Strapi el
+              cual es un CMS, creando soluciones escalables y optimizadas que
+              cumplen con los requisitos del cliente. Mi rol incluye tanto el
+              desarrollo del frontend como del backend, asegurando una
+              experiencia de usuario fluida y un rendimiento eficiente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Habilidades -->
+    <section id="habilidades" class="skills">
+      <div class="container">
+        <h2 class="section-title">Mis Habilidades</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/typescript.svg"
+                alt="TypeScript"
+              />
+            </div>
+            <h3>TypeScript</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/javascript.svg"
+                alt="JavaScript"
+              />
+            </div>
+            <h3>JavaScript</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img src="/portfolio/Miguel Scaccia/assets/html.svg" alt="HTML" />
+            </div>
+            <h3>HTML</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img src="/portfolio/Miguel Scaccia/assets/css.svg" alt="CSS" />
+            </div>
+            <h3>CSS</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/tailwind-css.svg"
+                alt="Tailwind"
+              />
+            </div>
+            <h3>Tailwind</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                alt="Next.js"
+              />
+            </div>
+            <h3>Next.js</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/react-nativo.svg"
+                alt="React"
+              />
+            </div>
+            <h3>React</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/nodo-js.svg"
+                alt="Node.js"
+              />
+            </div>
+            <h3>Node.js</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/postgres.svg"
+                alt="PostgreSQL"
+              />
+            </div>
+            <h3>PostgreSQL</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/mysql.svg"
+                alt="MySQL"
+              />
+            </div>
+            <h3>MySQL</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Proyectos -->
+    <section id="proyectos" class="projects">
+      <div class="container">
+        <h2 class="section-title">Mis Proyectos</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/NTGPastas.webp"
+                alt="Sitio web de NTG Pastas"
+              />
+            </div>
+            <div class="project-info">
+              <div>
+                <h3>Sitio web de NTG Pastas</h3>
+                <p>
+                  Desarrolle de un sitio web para una empresa dedicada a la
+                  fabricación de maquinaria para la producción de pastas
+                  frescas, crepes y ñoquis. El sitio, creado con HTML y Tailwind
+                  CSS, presenta un diseño responsive que destaca los productos y
+                  servicios de la empresa, facilitando una experiencia de
+                  usuario intuitiva y profesional.
+                </p>
+              </div>
+              <div>
+                <div class="project-tags">
+                  <span>HTML</span>
+                  <span>Tailwind CSS</span>
+                  <span>Next</span>
+                  <span>TypeScript</span>
+                  <span>Node.js</span>
+                  <span>Strapi</span>
+                  <span>Shadcn</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://ntgpastas.com.ar/"
+                    target="_blank"
+                    class="btn btn-small"
+                    >Ver Demo</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/world.webp"
+                alt="Proyecto 2"
+              />
+            </div>
+            <div class="project-info">
+              <div>
+                <h3>Planificador de Viajes Internacionales</h3>
+                <p>
+                  Aplicación web para registrar y organizar actividades que
+                  deseas realizar en diferentes países del mundo. Asigna
+                  actividades a los destinos que planeas visitar, creando un
+                  itinerario personalizado.
+                </p>
+              </div>
+              <div>
+                <div class="project-tags">
+                  <span>HTML</span>
+                  <span>CSS</span>
+                  <span>Redux</span>
+                  <span>JavaScript</span>
+                  <span>Node.js</span>
+                  <span>PostgreSQL</span>
+                  <span>React</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://pi-countries-three-theta.vercel.app/"
+                    class="btn btn-small"
+                    >Ver Demo</a
+                  >
+                  <a
+                    href="https://github.com/MiguelSc66/PI-Countries"
+                    class="btn btn-small btn-outline"
+                    >Ver Código</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/portfolio/Miguel Scaccia/assets/vinyls-trade.webp"
+                alt="Proyecto 3"
+              />
+            </div>
+            <div class="project-info">
+              <div>
+                <h3>Tienda de vinilos</h3>
+                <p>
+                  Proyecto grupal que consiste en un E-commerce de Vinilos,
+                  consistió en la creación de una plataforma dedicada a la
+                  compra, venta de vinilos musicales. Conectamos a amantes de la
+                  música y coleccionistas en un espacio donde pueden descubrir y
+                  adquirir vinilos de alta calidad.
+                </p>
+              </div>
+              <div>
+                <div class="project-tags">
+                  <span>HTML</span>
+                  <span>Tailwind CSS</span>
+                  <span>JavaScript</span>
+                  <span>Vite</span>
+                  <span>Redux</span>
+                  <span>Node.js</span>
+                  <span>PostgreSQL</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/franjavi8776/Vinils_Trade_Client"
+                    target="_blank"
+                    class="btn btn-small btn-outline"
+                    >Ver Código</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Idiomas -->
+    <section id="idiomas" class="languages">
+      <div class="container">
+        <h2 class="section-title">Idiomas</h2>
+        <div class="languages-grid">
+          <div class="language-item">
+            <div class="language-flag">
+              <span class="flag">🇦🇷</span>
+            </div>
+            <h3>Español</h3>
+            <p>Nativo</p>
+          </div>
+          <div class="language-item">
+            <div class="language-flag">
+              <span class="flag">🇺🇸</span>
+            </div>
+            <h3>Inglés</h3>
+            <p>Básico</p>
+          </div>
+          <div class="language-item">
+            <div class="language-flag">
+              <span class="flag">🇧🇷</span>
+            </div>
+            <h3>Portugués</h3>
+            <p>Básico</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contáctame</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="details">
+                <h3>Email</h3>
+                <p>miguel.scaccia1@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="details">
+                <h3>Teléfono</h3>
+                <p>+5493385521645</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="details">
+                <h3>Ubicación</h3>
+                <p>Córdoba, Argentina</p>
+              </div>
+            </div>
+            <div class="social-links">
+              <a
+                href="https://www.linkedin.com/in/miguel-ivan-scaccia/"
+                class="social-link"
+                aria-label="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://github.com/MiguelSc66"
+                class="social-link"
+                aria-label="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <input type="text" placeholder="Tu Nombre" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Tu Email" required />
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Asunto" required />
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Tu Mensaje" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>© 2025 Mi Portafolio. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

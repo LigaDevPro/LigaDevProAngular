@@ -1,0 +1,126 @@
+/* global.css */
+
+/* Fuente personalizada */
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype'),
+       url('./assets/fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Paleta de colores */
+:root {
+  --color-dark: #191A19;
+  --color-green-dark: #1E5128;
+  --color-green-light: #4E9F3D;
+  --color-green-pastel: #D8E9A8;
+}
+
+/* Navbar fija y con color de fondo personalizado */
+.navbar {
+  background-color: var(--color-green-dark);
+  padding: 15px 0 !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .navbar-brand {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.navbar a {
+  color: white;
+  margin-right: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.navbar a:hover {
+  color: var(--color-green-light);
+  text-decoration: underline;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Logo dentro del navbar como botón */
+.logo-icon {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+/* Estilo general del body */
+body {
+  background-color: var(--color-green-pastel);
+  color: var(--color-dark);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-green-dark);
+  font-weight: bold;
+}
+
+/* Enlaces */
+a {
+  color: var(--color-green-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-green-dark);
+  text-decoration: underline;
+}
+
+/* Botones genéricos */
+button {
+  background-color: var(--color-green-light);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-green-dark);
+}
+
+/* Contenedor reutilizable */
+.container {
+  width: 95%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Imagenes responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

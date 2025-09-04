@@ -1,0 +1,85 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.titulo-form {
+  color: #D8E9A8;
+}
+
+.form-content {
+  width: 100%;
+  max-width: 450px;
+  background-color: #191A19;
+  padding: 50px 60px 70px;
+  justify-content: center;
+  text-align: center;
+  border-radius: 25px;
+}
+
+.input-field {
+  width: 100%;
+  background-color: #515966;
+  margin: 15px 0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.input-field i {
+  margin-left: 15px;
+  color: #D8E9A8;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding: 18px 15px;
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #ffffff;
+}
+
+.recuperar-contraseña {
+    color: #D8E9A8;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+}
+
+.btn-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-success {
+  background-color: #4E9F3D !important;
+  border-color: #4E9F3D !important;
+}
+
+.btn-success:hover {
+  background-color: #1E5128 !important;
+  border-color: #1E5128 !important;
+}
+
+.btn-secondary-custom {
+  background-color: #D8E9A8;
+  border: 1px solid var(--color-green-dark);
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #1E5128;
+  color: white;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rodrigo Rojas</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="icon" href="assets/img/Favicon.png" />
+    <link rel="stylesheet" href="css/fonts.css">
+    </head>
+
+    <body>
+    <header class="header">
+        <div class="navbar-container">
+        <div class="minombre">
+            <h1>Rodrigo Rojas</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#proyectos">Mis proyectos</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de presentación -->
+        <section class="presentacion">
+        <div class="presentacion-content">
+            <img src="assets/img/rodrigo.jpg" alt="mi foto" class="presentacion-img" />
+            <div class="presentacion-text seccion-texto">
+            <h2>¡Hola! Soy Rodrigo</h2>
+            <h3>Futuro Desarrollador Full Stack</h3>
+            <p>Soy de Argentina, apasionado por la tecnología, el aprendizaje continuo y los desafíos creativos.</p>
+            <p>Actualmente me encuentro formándome en desarrollo de software y estoy listo para crear soluciones innovadoras.</p>
+            </div>
+        </div>
+        </section>
+
+        <!-- Sección Sobre mí -->
+        <section class="sobre-mi" id="sobre-mi">
+        <div class="sobre-mi-text seccion-texto">
+            <h2>Sobre mí</h2>
+            <p>Mi nombre es Walter Rodrigo Rojas. Actualmente me encuentro estudiando dos tecnicaturas superiores: Desarrollo de Software y Ciencia de Datos e Inteligencia Artificial.</p>
+            <p>Llevo más de dos años formándome y capacitándome en el mundo IT, un área que me apasiona profundamente por su dinamismo, su potencial transformador y sus infinitas posibilidades de aprendizaje.</p>
+            <p>Aspiro a finalizar ambas carreras y continuar perfeccionando mis habilidades a través de cursos especializados, nuevas tecnologías y —¿por qué no?— incluso una futura carrera universitaria relacionada a lo que hago.</p>
+            <p>Me considero una persona autodidacta, constante y con un fuerte compromiso por el crecimiento personal y profesional. Creo firmemente en la mejora continua y en el poder del conocimiento compartido para construir soluciones con impacto real.</p>
+        </div>
+        </section>
+
+        <!-- Sección Mis Proyectos -->
+        <section class="proyectos" id="proyectos">
+        <h2>Mis Proyectos</h2>
+
+        <div class="grid-proyectos">
+
+            <!-- Proyecto 1 -->
+            <div class="proyecto-card">
+            <a href="https://github.com/Grupo-Sistemas-Operativo/ToolKit-Administracion.git" target="_blank">
+                <img src="assets/img/linuk.png" alt="Proyecto 1">
+                <div class="proyecto-info">
+                <h3>ToolKit-Administración</h3>
+                <p>Un conjunto de scripts en Bash para tareas básicas de administración en sistemas Linux.</p>
+                </div>
+            </a>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="proyecto-card">
+            <a href="https://github.com/CDIA-2024/Miru.git" target="_blank">
+                <img src="assets/img/Miru.png" alt="Proyecto 2">
+                <div class="proyecto-info">
+                <h3>Miru</h3>
+                <p>Aplicación de gestión de contenido multimedia para fans de animes, películas, series y videojuegos.</p>
+                </div>
+            </a>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="proyecto-card">
+            <a href="https://github.com/Proyecto-integrador-grupo-21/Software-Developer-Team.git" target="_blank">
+                <img src="assets/img/Argenbroke.png" alt="Proyecto 3">
+                <div class="proyecto-info">
+                <h3>ARGBroker</h3>
+                <p>Aplicación de consola para facilitar la gestión de inversiones en el mercado bursátil.</p>
+                </div>
+            </a>
+            </div>
+
+            <!-- Proyecto 4 -->
+            <div class="proyecto-card">
+            <a href="https://github.com/Rodri1989/Gestor-de-biblioteca.git" target="_blank">
+                <img src="assets/img/Gestor.png" alt="Proyecto 4">
+                <div class="proyecto-info">
+                <h3>Gestor de Biblioteca</h3>
+                <p>Permite registrar usuarios, libros, autores y préstamos en una biblioteca.</p>
+                </div>
+            </a>
+            </div>
+        </div>
+        </section>
+        <section class="habilidades" id="habilidades">
+            <h2>Habilidades</h2>
+
+            <div class="categorias-habilidades">
+                <!-- Lenguajes de Programación -->
+                <div class="categoria">
+                <h3>Lenguajes</h3>
+                <ul>
+                    <li><img src="assets/iconos/html-5.png" alt="HTML">HTML5</li>
+                    <li><img src="assets/iconos/css-3.png" alt="CSS">CSS3</li>
+                    <li><img src="assets/iconos/python.png" alt="Python">Python</li>
+                    <li><img src="assets/iconos/base-de-datos.png" alt="SQL">SQL</li>
+                </ul>
+                </div>
+
+                <!-- Herramientas -->
+                <div class="categoria">
+                <h3>Herramientas</h3>
+                <ul>
+                    <li><img src="assets/iconos/git.png" alt="Git">Git</li>
+                    <li><img src="assets/iconos/github.png" alt="GitHub">GitHub</li>
+                </ul>
+                </div>
+            </div>
+            </section>
+            <section class="contacto" id="contacto">
+                <h2>Contactame</h2>
+                <p>¿Querés ponerte en contacto conmigo? Completá el siguiente formulario o escribime por mis redes.</p>
+
+                <form class="formulario-contacto">
+                    <input type="text" name="name" placeholder="Tu nombre" required>
+                    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                    <textarea name="message" rows="5" placeholder="Tu mensaje..." required></textarea>
+                    <button type="submit" >Enviar</button>
+                    
+                </form>
+            </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Walter Rodrigo Rojas</p>
+        <div class="social-links">
+            <a href="https://github.com/Rodri1989" target="_blank">
+                <img src="assets/iconos/github.png" alt="GitHub">
+            </a>
+            <a href="https://linkedin.com/in/rodrigo-rojas-87312b297" target="_blank">
+            <img src="assets/iconos/linkedin.png" alt="LinkedIn">
+            </a>
+  </div>
+</footer>
+</body>
+</html>

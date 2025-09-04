@@ -1,0 +1,277 @@
+.about-section {
+  padding: 80px 0;
+  background-color: var(--color-green-pastel);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--color-green-dark);
+}
+
+.about-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+.about-divider {
+  height: 4px;
+  width: 80px;
+  background-color: var(--color-green-light);
+  margin: 0 auto;
+}
+
+.about-content {
+  margin-bottom: 60px;
+}
+
+.about-description {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.about-description p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team-member {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.member-image-container {
+  height: 250px;
+  overflow: hidden;
+}
+
+.member-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.team-member:hover {
+  transform: scale(1.1);
+}
+
+.member-info {
+  padding: 20px;
+}
+
+.member-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: var(--color-green-dark);
+}
+
+.member-role {
+  color: var(--color-green-light);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.member-bio {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: var(--color-dark);
+}
+
+.member-social {
+  display: flex;
+  gap: 10px;
+}
+
+.social-link {
+  font-size: 0.9rem;
+  color: var(--color-green-light);
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--color-green-dark);
+}
+
+.team-values {
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 60px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+.team-values h3 {
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.values-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-content: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.value-item {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-5px);
+  background-color: rgba(78, 159, 61, 0.1);
+}
+
+.value-icon {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.value-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+.value-item h4 {
+  margin-bottom: 10px;
+  color: var(--color-green-dark);
+}
+
+.team-testimonials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.team-testimonials h3 {
+  margin-bottom: 30px;
+  color: var(--color-green-dark);
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.testimonial-item:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-item h4 {
+  color: var(--color-green-dark);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.testimonial-item p {
+  font-size: 1rem;
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .values-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-section {
+    padding: 50px 0;
+  }
+
+  .about-header {
+    margin-bottom: 40px;
+  }
+
+  .team-member {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .testimonial-item {
+    padding: 15px;
+  }
+}
