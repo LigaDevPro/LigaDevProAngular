@@ -1,9 +1,9 @@
 <main class="login-section">
-  <div class="container">
+  <div class="section-login">
     <div class="form-content">
       <h2 class="titulo-form">Iniciar Sesión</h2>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-section login-section">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-section ">
         <div class="input-field">
           <i class="fa-solid fa-envelope"></i>
           <input type="email" placeholder="Correo electrónico" formControlName="email" />
