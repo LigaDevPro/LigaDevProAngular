@@ -28,8 +28,8 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Estilo general del body */
-body {
+/* Estilo general del main */
+main {
   background-color: var(--color-green-pastel);
   color: var(--color-dark);
   font-size: 16px;
