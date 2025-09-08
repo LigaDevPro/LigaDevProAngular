@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
+
+
 @Component({
   selector: 'app-about',
   standalone: true,
@@ -16,7 +18,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Miguel Ivan Scaccia',
       role: 'Desarrollador Full stack',
       bio: 'Especialista en crear interfaces intuitivas y atractivas con amplia experiencia en HTML, CSS y JavaScript.',
-      image: '/img/placeHolder.webp',
+      image: '/img/image7.png',
       social: {
         linkedin: 'https://www.linkedin.com/in/miguel-ivan-scaccia/',
         github: 'https://github.com/MiguelSc66',
@@ -27,9 +29,9 @@ export class About implements OnInit, OnDestroy {
       name: 'Rodrigo Rojas',
       role: 'Desarrollador Full stack',
       bio: 'Experto en arquitectura de sistemas y bases de datos con enfoque en soluciones escalables y seguras.',
-      image: '/img/placeHolder.webp',
+      image: '/img/image10.png',
       social: {
-        linkedin: '#',
+        linkedin: 'https://www.linkedin.com/in/rodrigo-rojas-87312b297/',
         github: 'https://github.com/Rodri1989',
         portfolio: '#',
       },
@@ -38,9 +40,9 @@ export class About implements OnInit, OnDestroy {
       name: 'Agustin Emanuel Ceballos',
       role: 'Desarrollador Full stack',
       bio: 'Creativo apasionado por diseñar experiencias de usuario memorables y funcionales que conectan con las personas.',
-      image: '/img/placeHolder.webp',
+      image: '/img/image8.png',
       social: {
-        linkedin: '#',
+        linkedin: 'https://www.linkedin.com/in/agustin-ceballos/',
         github: 'https://github.com/Agustin197',
         portfolio: '#',
       },
@@ -49,9 +51,9 @@ export class About implements OnInit, OnDestroy {
       name: 'Ignacio Matías Cantoni',
       role: 'Desarrollador Full stack',
       bio: 'Organizador nato con habilidad para coordinar equipos y garantizar que los proyectos se entreguen a tiempo y dentro del presupuesto.',
-      image: '/img/placeHolder.webp',
+      image: '/img/image6.png',
       social: {
-        linkedin: '#',
+        linkedin: 'https://www.linkedin.com/in/ignacio-cantoni-459136216/',
         github: 'https://github.com/IgnacioCantoni',
         portfolio: '#',
       },
@@ -59,8 +61,8 @@ export class About implements OnInit, OnDestroy {
     {
       name: 'Pablo Emanuel Peralta',
       role: 'Desarrollador Full stack',
-      bio: 'Estratega de marketing digital con experiencia en campañas que generan resultados tangibles y aumentan la visibilidad.',
-      image: '/img/placeHolder.webp',
+      bio: 'Estratega de marketing digityal con experiencia en campañas que generan resultados tangibles y aumentan la visibilidad.',
+      image: '/img/image11.png',
       social: {
         linkedin: 'https://www.linkedin.com/in/pabloperalta-keepcoding/',
         github: 'https://github.com/Pablo4604',
@@ -71,7 +73,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Juan Manuel Machado',
       role: 'Desarrollador Full stack',
       bio: 'Experto en análisis de datos y estadísticas que transforma información compleja en insights accionables.',
-      image: '/img/placeHolder.webp',
+      image: '/img/image9.png',
       social: {
         linkedin: '#',
         github: 'https://github.com/JuanmaDS13',
