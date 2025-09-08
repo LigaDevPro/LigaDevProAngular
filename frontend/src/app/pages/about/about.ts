@@ -75,7 +75,7 @@ export class About implements OnInit, OnDestroy {
       bio: 'Experto en análisis de datos y estadísticas que transforma información compleja en insights accionables.',
       image: '/img/image9.png',
       social: {
-        linkedin: '#',
+        linkedin: 'https://ar.linkedin.com/in/juan-manuel-machado-b472a0363',
         github: 'https://github.com/JuanmaDS13',
         portfolio: '#',
       },
