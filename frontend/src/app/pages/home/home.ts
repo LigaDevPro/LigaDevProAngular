@@ -1,7 +1,6 @@
-import { Component, OnInit, Renderer2, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit {
   sections = [
     {
       title: 'Bienvenido a la Plataforma de Gestión de Torneos',
@@ -33,12 +32,7 @@ export class Home implements OnInit, OnDestroy {
     },
   ];
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  constructor(private titleService: Title, private metaService: Meta) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('LigaPro - Gestión de Torneos');
@@ -47,53 +41,11 @@ export class Home implements OnInit, OnDestroy {
         name: 'description',
         content: 'Plataforma para gestionar torneos internos de forma sencilla y profesional',
       },
-      { name: 'keywords', content: 'angular 20, ligapro, torneos, gestión' },
       { property: 'og:title', content: 'LigaPro - Gestión de Torneos' },
       {
         property: 'og:description',
         content: 'Automatiza y organiza tus torneos con nuestra plataforma',
       },
     ]);
-
-    const favicon = this.renderer.createElement('link');
-    this.renderer.setAttribute(favicon, 'rel', 'icon');
-    this.renderer.setAttribute(favicon, 'href', '/assets/icon/icon.png');
-    this.renderer.appendChild(this.document.head, favicon);
-
-    const bootstrapLink = this.renderer.createElement('link');
-    this.renderer.setAttribute(bootstrapLink, 'rel', 'stylesheet');
-    this.renderer.setAttribute(
-      bootstrapLink,
-      'href',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-    );
-    this.renderer.appendChild(this.document.head, bootstrapLink);
-
-    const bootstrapScript = this.renderer.createElement('script');
-    this.renderer.setAttribute(
-      bootstrapScript,
-      'src',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'
-    );
-    this.renderer.appendChild(this.document.body, bootstrapScript);
-  }
-
-  ngOnDestroy(): void {
-    const favicon = this.document.querySelector('link[href="/assets/icon/icon.png"]');
-    if (favicon) {
-      this.renderer.removeChild(this.document.head, favicon);
-    }
-    const bootstrapLink = this.document.querySelector(
-      'link[href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"]'
-    );
-    if (bootstrapLink) {
-      this.renderer.removeChild(this.document.head, bootstrapLink);
-    }
-    const bootstrapScript = this.document.querySelector(
-      'script[src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"]'
-    );
-    if (bootstrapScript) {
-      this.renderer.removeChild(this.document.body, bootstrapScript);
-    }
   }
 }

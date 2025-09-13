@@ -8,7 +8,7 @@
     <div class="row g-4">
       @for (card of summaryCards; track card.title) {
       <div class="col-md-4">
-        <div class="card summary-card {{ card.bgClass }} shadow-sm">
+        <div class="card summary-card h-100 {{ card.bgClass }} shadow-sm">
           <div class="card-body">
             <h5 class="card-title">{{ card.title }}</h5>
             <p class="card-text fs-2">{{ card.value }}</p>

@@ -1,9 +1,6 @@
-import { Component, OnInit, Renderer2, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-about',
@@ -12,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './about.html',
   styleUrls: ['./about.css'],
 })
-export class About implements OnInit, OnDestroy {
+export class About implements OnInit {
   teamMembers = [
     {
       name: 'Miguel Ivan Scaccia',
@@ -113,12 +110,7 @@ export class About implements OnInit, OnDestroy {
     },
   ];
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  constructor(private titleService: Title, private metaService: Meta) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Sobre Nosotros');
@@ -126,23 +118,5 @@ export class About implements OnInit, OnDestroy {
       { property: 'og:title', content: 'Sobre Nosotros' },
       { property: 'og:description', content: 'Descubre quiénes somos y nuestros valores' },
     ]);
-
-    const bootstrapLink = this.renderer.createElement('link');
-    this.renderer.setAttribute(bootstrapLink, 'rel', 'stylesheet');
-    this.renderer.setAttribute(
-      bootstrapLink,
-      'href',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
-    );
-    this.renderer.appendChild(this.document.head, bootstrapLink);
-  }
-
-  ngOnDestroy(): void {
-    const bootstrapLink = this.document.querySelector(
-      'link[href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"]'
-    );
-    if (bootstrapLink) {
-      this.renderer.removeChild(this.document.head, bootstrapLink);
-    }
   }
 }
