@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Auth, Usuario } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,12 @@ import { Title, Meta } from '@angular/platform-browser';
 export class Login implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private metaService: Meta) {
+  constructor(
+    private fb: FormBuilder,
+    private titleService: Title,
+    private metaService: Meta,
+    private authService: Auth
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -37,9 +43,23 @@ export class Login implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Login válido', this.loginForm.value);
+      this.authService.getUsuarios().subscribe({
+        next: (usuarios: Usuario[]) => {
+          const user = usuarios.find(
+            (u) =>
+              u.email === this.loginForm.value.email && u.password === this.loginForm.value.password
+          );
+          if (user) {
+            alert('Inicio de sesión exitoso ✅');
+          } else {
+            alert('Usuario o contraseña incorrectos');
+          }
+        },
+        error: () => {
+          alert('Error al buscar usuarios');
+        },
+      });
     } else {
-      console.log('Login inválido');
       this.loginForm.markAllAsTouched();
     }
   }
