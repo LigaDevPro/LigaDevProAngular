@@ -19,11 +19,20 @@
         </div>
 
         <div class="field">
-          <label for="fecha">Fecha</label>
-          <input id="fecha" type="date" formControlName="fecha" />
-          @if (fecha?.touched && fecha?.invalid) {
+          <label for="fechaInicio">Fecha de inicio</label>
+          <input id="fechaInicio" type="date" formControlName="fechaInicio" />
+          @if (fechaInicio?.touched && fechaInicio?.invalid) {
           <div class="error">
-            <small>La fecha es obligatoria.</small>
+            <small>La fecha de inicio es obligatoria.</small>
+          </div>
+          }
+        </div>
+        <div class="field">
+          <label for="fechaFinal">Fecha final</label>
+          <input id="fechaFinal" type="date" formControlName="fechaFinal" />
+          @if (fechaFinal?.touched && fechaFinal?.invalid) {
+          <div class="error">
+            <small>La fecha final es obligatoria.</small>
           </div>
           }
         </div>

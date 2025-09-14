@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Torneos } from '../../services/torneos';
+import { Torneo } from '../../models/torneo';
 
 @Component({
   selector: 'app-torneo-add',
@@ -13,10 +15,16 @@ import { Title, Meta } from '@angular/platform-browser';
 export class FormTournament implements OnInit {
   formTournament: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private metaService: Meta) {
+  constructor(
+    private fb: FormBuilder,
+    private titleService: Title,
+    private metaService: Meta,
+    private torneosService: Torneos
+  ) {
     this.formTournament = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      fecha: ['', Validators.required],
+      fechaInicio: ['', Validators.required],
+      fechaFinal: ['', Validators.required],
       ubicacion: ['', [Validators.required, Validators.minLength(5)]],
       descripcion: [''],
     });
@@ -39,9 +47,22 @@ export class FormTournament implements OnInit {
 
   onSubmit() {
     if (this.formTournament.valid) {
-      console.log('✅ Torneo creado:', this.formTournament.value);
-      alert('Torneo creado con éxito 🎉');
-      this.formTournament.reset();
+      const torneo: Torneo = {
+        nombre: this.formTournament.value.nombre,
+        fechaInicio: this.formTournament.value.fechaInicio,
+        fechaFinal: this.formTournament.value.fechaFinal,
+        ubicacion: this.formTournament.value.ubicacion,
+        descripcion: this.formTournament.value.descripcion,
+        estado: 'activo',
+      };
+      this.torneosService.createTorneo(torneo).subscribe({
+        next: () => {
+          this.formTournament.reset();
+        },
+        error: () => {
+          alert('Error al crear el torneo. Verifica los datos e intenta nuevamente.');
+        },
+      });
     } else {
       this.formTournament.markAllAsTouched();
     }
@@ -50,8 +71,11 @@ export class FormTournament implements OnInit {
   get nombre() {
     return this.formTournament.get('nombre');
   }
-  get fecha() {
-    return this.formTournament.get('fecha');
+  get fechaInicio() {
+    return this.formTournament.get('fechaInicio');
+  }
+  get fechaFinal() {
+    return this.formTournament.get('fechaFinal');
   }
   get ubicacion() {
     return this.formTournament.get('ubicacion');

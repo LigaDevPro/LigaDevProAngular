@@ -1,0 +1,161 @@
+<main class="team-section">
+  <div class="page">
+    <div class="card">
+      <h2 class="title">Crear Equipo</h2>
+
+      <form [formGroup]="formTeam" (ngSubmit)="onSubmit()" novalidate>
+        <div class="team-info">
+          <h3>Información del Equipo</h3>
+
+          <div class="field">
+            <label for="nombre">Nombre del equipo</label>
+            <input
+              id="nombre"
+              type="text"
+              formControlName="nombre"
+              placeholder="Ej: Los Pumas FC"
+            />
+            @if (nombre?.touched && nombre?.invalid) {
+            <div class="error">
+              @if (nombre?.errors?.['required']) {
+              <small>El nombre es obligatorio.</small>
+              } @if (nombre?.errors?.['minlength']) {
+              <small>Mínimo 3 caracteres.</small>
+              }
+            </div>
+            }
+          </div>
+
+          <div class="field">
+            <label for="entrenador">Entrenador</label>
+            <input
+              id="entrenador"
+              type="text"
+              formControlName="entrenador"
+              placeholder="Ej: Juan Pérez"
+            />
+            @if (entrenador?.touched && entrenador?.invalid) {
+            <div class="error">
+              @if (entrenador?.errors?.['required']) {
+              <small>El entrenador es obligatorio.</small>
+              } @if (entrenador?.errors?.['minlength']) {
+              <small>Mínimo 2 caracteres.</small>
+              }
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="jugadores-section">
+          <div class="section-header">
+            <div class="section-title">
+              <h3>Jugadores del Equipo</h3>
+              <span class="jugadores-counter">{{ jugadoresCount }}/16 jugadores</span>
+            </div>
+            <button
+              type="button"
+              class="btn-add"
+              (click)="addJugador()"
+              [disabled]="!canAddMoreJugadores"
+              [class.disabled]="!canAddMoreJugadores"
+            >
+              <i class="fas fa-plus"></i> Agregar Jugador
+            </button>
+          </div>
+
+          <div formArrayName="jugadores" class="jugadores-list">
+            @for (jugador of jugadoresArray.controls; track $index) {
+            <div [formGroupName]="$index" class="jugador-card">
+              <div class="jugador-header">
+                <h4>Jugador #{{ $index + 1 }}</h4>
+                @if (jugadoresArray.length > 1) {
+                <button type="button" class="btn-remove" (click)="removeJugador($index)">
+                  <i class="fas fa-trash"></i>
+                </button>
+                }
+              </div>
+
+              <div class="jugador-fields">
+                <div class="field">
+                  <label [for]="'nombreCompleto_' + $index">Nombre completo</label>
+                  <input
+                    [id]="'nombreCompleto_' + $index"
+                    type="text"
+                    formControlName="nombreCompleto"
+                    placeholder="Ej: Carlos González"
+                  />
+                  @if (jugador.get('nombreCompleto')?.touched &&
+                  jugador.get('nombreCompleto')?.invalid) {
+                  <div class="error">
+                    @if (jugador.get('nombreCompleto')?.errors?.['required']) {
+                    <small>El nombre es obligatorio.</small>
+                    } @if (jugador.get('nombreCompleto')?.errors?.['minlength']) {
+                    <small>Mínimo 5 caracteres.</small>
+                    }
+                  </div>
+                  }
+                </div>
+
+                <div class="field">
+                  <label [for]="'numeroPosicion_' + $index">Número de posición</label>
+                  <input
+                    [id]="'numeroPosicion_' + $index"
+                    type="number"
+                    formControlName="numeroPosicion"
+                    placeholder="1-99"
+                    min="1"
+                    max="99"
+                  />
+                  @if (jugador.get('numeroPosicion')?.touched &&
+                  jugador.get('numeroPosicion')?.invalid) {
+                  <div class="error">
+                    @if (jugador.get('numeroPosicion')?.errors?.['required']) {
+                    <small>El número es obligatorio.</small>
+                    } @if (jugador.get('numeroPosicion')?.errors?.['min']) {
+                    <small>Mínimo número 1.</small>
+                    } @if (jugador.get('numeroPosicion')?.errors?.['max']) {
+                    <small>Máximo número 99.</small>
+                    }
+                  </div>
+                  }
+                </div>
+
+                @if (jugador.get('numeroPosicion')?.value && jugador.get('numeroPosicion')?.valid) {
+                <div class="posicion-info">
+                  <small class="posicion-text">
+                    Posición sugerida:
+                    <strong>{{ getPosicionJugador(jugador.get('numeroPosicion')?.value) }}</strong>
+                  </small>
+                </div>
+                }
+              </div>
+            </div>
+            }
+          </div>
+
+          @if (jugadoresArray.length === 0) {
+          <div class="no-jugadores">
+            <p>No hay jugadores agregados. Haz clic en "Agregar Jugador" para comenzar.</p>
+          </div>
+          }
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">
+            Limpiar Formulario
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="!isFormValid">
+            Crear Equipo
+          </button>
+        </div>
+
+        <div class="form-info">
+          <p>
+            <strong>Nota:</strong> Puedes agregar múltiples jugadores al equipo. Cada jugador debe
+            tener un nombre completo y un número de posición único.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

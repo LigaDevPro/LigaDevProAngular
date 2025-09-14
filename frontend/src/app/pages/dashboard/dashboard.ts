@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
+import { Partidos } from '../../services/partidos';
+import { Partido } from '../../models/partido';
+import { Equipo } from '../../models/equipo';
+import { Equipos } from '../../services/equipos';
+import { Torneo } from '../../models/torneo';
+import { Torneos } from '../../services/torneos';
+import { UltimosPartidos } from '../../services/ultimos-partidos';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,47 +18,69 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit {
-  summaryCards = [
-    { title: 'Torneos Activos', value: 5, bgClass: 'bg-green' },
-    { title: 'Equipos Registrados', value: 28, bgClass: 'bg-dark-green' },
-    { title: 'Partidos Jugados', value: 43, bgClass: 'bg-light-green' },
-  ];
+  matches: Partido[] = [];
+  ultimosPartidos: Partido[] = [];
+  teams: Equipo[] = [];
+  torneosActivos: Torneo[] = [];
 
-  recentMatches = [
-    {
-      date: '10/05/2025',
-      teamA: 'Los Pumas',
-      teamB: 'Águilas FC',
-      result: '2 - 1',
-      status: 'Finalizado',
-      statusClass: 'bg-success',
-    },
-    {
-      date: '11/05/2025',
-      teamA: 'Tiburones',
-      teamB: 'Leones',
-      result: '1 - 3',
-      status: 'Finalizado',
-      statusClass: 'bg-success',
-    },
-    {
-      date: '13/05/2025',
-      teamA: 'Furia Roja',
-      teamB: 'Dragones',
-      result: '-',
-      status: 'Programado',
-      statusClass: 'bg-warning text-dark',
-    },
-  ];
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private Partidos: Partidos,
+    private Equipos: Equipos,
+    private Torneos: Torneos,
+    private UltimosPartidos: UltimosPartidos
+  ) {}
+  getUltimosPartidos(): void {
+    this.UltimosPartidos.getUltimosPartidos().subscribe((data) => {
+      this.ultimosPartidos = data;
+    });
+  }
 
-  teams = [
-    { id: 1, name: 'Furia Roja', coach: 'Juan Pérez' },
-    { id: 2, name: 'Leones', coach: 'Ana Gómez' },
-  ];
+  getMatchesAll(): void {
+    this.Partidos.getMatches().subscribe((data) => {
+      this.matches = data;
+    });
+  }
 
-  constructor(private titleService: Title, private metaService: Meta) {}
+  getEquiposAll(): void {
+    this.Equipos.getEquipos().subscribe((data) => {
+      this.teams = data;
+    });
+  }
+
+  get summaryCards() {
+    return [
+      {
+        title: 'Torneos Activos',
+        value: this.torneosActivos.length,
+        bgClass: 'bg-green',
+      },
+      {
+        title: 'Equipos Registrados',
+        value: this.teams.length,
+        bgClass: 'bg-dark-green',
+      },
+      {
+        title: 'Partidos Jugados',
+        value: this.matches.filter((match) => match.status === 'Finalizado').length,
+        bgClass: 'bg-light-green',
+      },
+    ];
+  }
+
+  getTorneosActivos(): void {
+    this.Torneos.getTorneosActivos().subscribe((data) => {
+      this.torneosActivos = data;
+    });
+  }
 
   ngOnInit(): void {
+    this.getMatchesAll();
+    this.getEquiposAll();
+    this.getTorneosActivos();
+    this.getUltimosPartidos();
+
     this.titleService.setTitle('Dashboard - Gestión de Torneos');
     this.metaService.addTags([
       {
