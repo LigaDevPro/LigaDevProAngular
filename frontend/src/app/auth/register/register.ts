@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Auth } from '../../services/auth';
+import { Usuario } from '../../models/usuarios';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -18,7 +20,12 @@ import { Title, Meta } from '@angular/platform-browser';
 export class Register implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private titleService: Title, private metaService: Meta) {
+  constructor(
+    private fb: FormBuilder,
+    private titleService: Title,
+    private metaService: Meta,
+    private authService: Auth
+  ) {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]],
@@ -53,8 +60,20 @@ export class Register implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('✅ Usuario registrado:', this.registerForm.value);
-      alert('Registro exitoso 🎉');
+      const usuario: Usuario = {
+        username: this.registerForm.value.username,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
+      };
+      this.authService.crearUsuario(usuario).subscribe({
+        next: () => {
+          alert('Registro exitoso 🎉');
+          this.registerForm.reset();
+        },
+        error: () => {
+          alert('Error al registrar el usuario');
+        },
+      });
     } else {
       this.registerForm.markAllAsTouched();
     }
