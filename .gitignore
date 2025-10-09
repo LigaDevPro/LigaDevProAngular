@@ -42,3 +42,59 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+backend/app/db.sqlite3
+backend/app/db.sqlite3-journal
+backend/app/media/
+backend/app/staticfiles/
+backend/env/
+backend/venv/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Django migrations (opcional)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Django local settings
+backend/app/ligadevpro_backend/local_settings.py
+backend/app/.env
+backend/app/.env.local
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
