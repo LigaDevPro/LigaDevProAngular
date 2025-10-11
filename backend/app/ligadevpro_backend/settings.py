@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',  # Django REST Framework
     'rest_framework.authtoken',  # Token authentication
+    'corsheaders',  # Django CORS Headers
     'proyect',  # Nuestra app principal del proyecto
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
