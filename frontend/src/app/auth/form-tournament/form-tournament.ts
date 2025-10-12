@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Torneos } from '../../services/torneos';
-import { Torneo } from '../../models/torneo';
+import { CreateTorneo, Torneo } from '../../models/torneo';
 
 @Component({
   selector: 'app-torneo-add',
@@ -47,13 +47,13 @@ export class FormTournament implements OnInit {
 
   onSubmit() {
     if (this.formTournament.valid) {
-      const torneo: Torneo = {
+      const torneo: CreateTorneo = {
         nombre: this.formTournament.value.nombre,
+        formato: this.formTournament.value.formato,
         fechaInicio: this.formTournament.value.fechaInicio,
         fechaFinal: this.formTournament.value.fechaFinal,
-        ubicacion: this.formTournament.value.ubicacion,
         descripcion: this.formTournament.value.descripcion,
-        estado: 'activo',
+        estado: this.formTournament.value.estado,
       };
       this.torneosService.createTorneo(torneo).subscribe({
         next: () => {

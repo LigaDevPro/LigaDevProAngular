@@ -7,7 +7,7 @@ import { Partido } from '../models/partido';
   providedIn: 'root',
 })
 export class UltimosPartidos {
-  private url = 'http://localhost:3000/partidos';
+  private url = 'http://localhost:8000/api/partidos/';
 
   constructor(private http: HttpClient) {}
 

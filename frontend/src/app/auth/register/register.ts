@@ -9,7 +9,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Auth } from '../../services/auth';
-import { Usuario } from '../../models/usuarios';
+import { CreateUsuario } from '../../models/usuarios';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -60,7 +61,7 @@ export class Register implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const usuario: Usuario = {
+      const usuario: CreateUsuario = {
         username: this.registerForm.value.username,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,

@@ -7,7 +7,7 @@ import { Equipo, CreateEquipo } from '../models/equipo';
   providedIn: 'root',
 })
 export class Equipos {
-  private url = 'http://localhost:3000/equipos';
+  private url = 'http://localhost:8000/api/equipos/';
 
   constructor(private http: HttpClient) {}
 

@@ -1,14 +1,20 @@
 import { Jugador } from './jugador';
 
 export interface Equipo {
-  id?: number;
+  idEquipo: number;
   nombre: string;
   entrenador: string;
-  jugadores: Jugador[];
+  idUsuario?: number[];
+  jugadores?: Jugador[];
+  usuarios?: {
+    idUsuario: number;
+    username: string;
+    email: string;
+  }[];
 }
 
 export interface CreateEquipo {
   nombre: string;
   entrenador: string;
-  jugadores: Jugador[];
+  idUsuario?: number[];
 }

@@ -32,20 +32,41 @@ export class Dashboard implements OnInit {
     private UltimosPartidos: UltimosPartidos
   ) {}
   getUltimosPartidos(): void {
-    this.UltimosPartidos.getUltimosPartidos().subscribe((data) => {
-      this.ultimosPartidos = data;
+    this.UltimosPartidos.getUltimosPartidos().subscribe({
+      next: (data) => {
+        this.ultimosPartidos = data || [];
+        console.log('✅ Últimos partidos cargados:', this.ultimosPartidos);
+      },
+      error: (err) => {
+        console.error('❌ Error cargando últimos partidos:', err);
+        this.ultimosPartidos = [];
+      },
     });
   }
 
   getMatchesAll(): void {
-    this.Partidos.getMatches().subscribe((data) => {
-      this.matches = data;
+    this.Partidos.getMatches().subscribe({
+      next: (data) => {
+        this.matches = data || [];
+        console.log('✅ Matches cargados:', this.matches);
+      },
+      error: (err) => {
+        console.error('❌ Error cargando matches:', err);
+        this.matches = [];
+      },
     });
   }
 
   getEquiposAll(): void {
-    this.Equipos.getEquipos().subscribe((data) => {
-      this.teams = data;
+    this.Equipos.getEquipos().subscribe({
+      next: (data) => {
+        this.teams = data || [];
+        console.log('✅ Equipos cargados:', this.teams);
+      },
+      error: (err) => {
+        console.error('❌ Error cargando equipos:', err);
+        this.teams = [];
+      },
     });
   }
 
@@ -63,23 +84,59 @@ export class Dashboard implements OnInit {
       },
       {
         title: 'Partidos Jugados',
-        value: this.matches.filter((match) => match.status === 'Finalizado').length,
+        value: this.matches.filter((match) => match.estado === 'Finalizado').length,
         bgClass: 'bg-light-green',
       },
     ];
   }
 
   getTorneosActivos(): void {
-    this.Torneos.getTorneosActivos().subscribe((data) => {
-      this.torneosActivos = data;
+    this.Torneos.getTorneosActivos().subscribe({
+      next: (data) => {
+        this.torneosActivos = (data || []).filter(
+          (t) => t.estado === 'En curso' || t.estado === 'Preparación'
+        );
+        console.log('✅ Torneos activos cargados:', this.torneosActivos);
+      },
+      error: (err) => {
+        console.error('❌ Error cargando torneos activos:', err);
+        this.torneosActivos = [];
+      },
     });
   }
 
+  getStatusClass(estado: string, index: number): string {
+    switch (estado) {
+      case 'Finalizado':
+        return 'bg-success';
+      case 'En curso':
+        return 'bg-primary';
+      case 'Preparación':
+        return 'bg-warning';
+      case 'Cancelado':
+        return 'bg-danger';
+      default:
+        return index % 2 === 0 ? 'bg-info' : 'bg-secondary';
+    }
+  }
+
   ngOnInit(): void {
+    console.log('🚀 Dashboard inicializado - Cargando datos...');
+    console.log('📡 Backend URL: http://localhost:8000/api/');
+
     this.getMatchesAll();
     this.getEquiposAll();
     this.getTorneosActivos();
     this.getUltimosPartidos();
+
+    // Verificar después de 2 segundos si hay datos
+    setTimeout(() => {
+      console.log('📊 Estado actual:');
+      console.log('  - Matches:', this.matches.length);
+      console.log('  - Equipos:', this.teams.length);
+      console.log('  - Torneos:', this.torneosActivos.length);
+      console.log('  - Últimos partidos:', this.ultimosPartidos.length);
+    }, 2000);
 
     this.titleService.setTitle('Dashboard - Gestión de Torneos');
     this.metaService.addTags([

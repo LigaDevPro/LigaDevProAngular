@@ -35,7 +35,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (torneo of torneosActivos; track torneo.id) {
+                  @for (torneo of torneosActivos; track torneo.idTorneo) {
                   <tr>
                     <td>{{ torneo.nombre }}</td>
                     <td>{{ torneo.fechaInicio }}</td>
@@ -66,14 +66,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (match of ultimosPartidos; track match.id) {
+                  @for (match of ultimosPartidos; track match.idPartido; let idx = $index) {
                   <tr>
-                    <td>{{ match.date }}</td>
-                    <td>{{ match.teamA }}</td>
-                    <td>{{ match.teamB }}</td>
-                    <td>{{ match.result }}</td>
+                    <td>{{ match.fecha }}</td>
+                    <td>{{ match.equipoA }}</td>
+                    <td>{{ match.equipoB }}</td>
+                    <td>{{ match.resultado }}</td>
                     <td>
-                      <span class="badge {{ match.statusClass }}">{{ match.status }}</span>
+                      <span class="badge {{ getStatusClass(match.estado, idx) }}">{{
+                        match.estado
+                      }}</span>
                     </td>
                   </tr>
                   } @empty {
@@ -108,13 +110,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (team of teams; track team.id) {
+                  @for (team of teams; track team.idEquipo) {
                   <tr>
-                    <td>{{ team.id }}</td>
+                    <td>{{ team.idEquipo }}</td>
                     <td>{{ team.nombre }}</td>
                     <td>{{ team.entrenador }}</td>
                     <td>
-                      <span class="badge bg-info">{{ team.jugadores.length }} jugadores</span>
+                      <span class="badge bg-info">{{ team.idUsuario?.length }} jugadores</span>
                     </td>
                     <td>
                       <button class="btn btn-primary btn-sm">Ver</button>

@@ -1,27 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-export interface Usuario {
-  id?: number;
-  username: string;
-  email: string;
-  password: string;
-}
+import { Observable, catchError, of } from 'rxjs';
+import { Usuario, CreateUsuario, LoginResponse } from '../models/usuarios';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private url = 'http://localhost:3000/usuarios';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
-  crearUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.url, usuario);
+  login(email: string, password: string): Observable<LoginResponse> {
+    const url = `${this.apiUrl}/auth/login/`;
+    return this.http
+      .post<LoginResponse>(url, { email, password })
+      .pipe(catchError(this.handleError<LoginResponse>('login')));
+  }
+
+  logout(): Observable<any> {
+    const url = `${this.apiUrl}/auth/logout/`;
+    return this.http.post(url, {}).pipe(catchError(this.handleError<any>('logout')));
+  }
+
+  crearUsuario(usuario: CreateUsuario): Observable<Usuario> {
+    const url = `${this.apiUrl}/usuarios/`;
+    return this.http
+      .post<Usuario>(url, usuario)
+      .pipe(catchError(this.handleError<Usuario>('crearUsuario')));
   }
 
   getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.url);
+    const url = `${this.apiUrl}/usuarios/`;
+    return this.http
+      .get<Usuario[]>(url)
+      .pipe(catchError(this.handleError<Usuario[]>('getUsuarios', [])));
+  }
+
+  getUserProfile(): Observable<Usuario> {
+    const url = `${this.apiUrl}/auth/profile/`;
+    return this.http
+      .get<Usuario>(url)
+      .pipe(catchError(this.handleError<Usuario>('getUserProfile')));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed:`, error);
+      return of(result as T);
+    };
   }
 }

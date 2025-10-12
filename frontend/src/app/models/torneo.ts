@@ -1,9 +1,18 @@
 export interface Torneo {
-  id?: number;
+  idTorneo: number;
   nombre: string;
+  descripcion?: string;
+  formato: string;
   fechaInicio: string;
   fechaFinal: string;
-  ubicacion: string;
+  estado: 'Preparación' | 'En curso' | 'Finalizado' | 'Cancelado';
+}
+
+export interface CreateTorneo {
+  nombre: string;
   descripcion?: string;
-  estado: 'activo' | 'inactivo';
+  formato: string;
+  fechaInicio: string;
+  fechaFinal: string;
+  estado?: 'Preparación' | 'En curso' | 'Finalizado' | 'Cancelado';
 }
