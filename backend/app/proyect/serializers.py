@@ -60,8 +60,7 @@ class UsuarioListSerializer(serializers.ModelSerializer):
         fields = [
             'idUsuario',
             'username',
-            'mail',
-            'nombre',
+            'email',
             'rol_id',
             'rol_nombre',
             'is_active',
@@ -73,20 +72,20 @@ class LoginSerializer(serializers.Serializer):
     """
     Serializer para el login de usuarios
     """
-    mail = serializers.EmailField()
+    email = serializers.EmailField()
     password = serializers.CharField()
     
     def validate(self, attrs):
         """
         Valida las credenciales del usuario
         """
-        mail = attrs.get('mail')
+        email = attrs.get('email')
         password = attrs.get('password')
         
-        if mail and password:
-            # Buscar usuario por mail
+        if email and password:
+            # Buscar usuario por email
             try:
-                usuario = Usuario.objects.get(mail=mail)
+                usuario = Usuario.objects.get(email=email)
                 
                 # Verificar si la contraseña es correcta
                 if usuario.check_password(password):
@@ -101,7 +100,7 @@ class LoginSerializer(serializers.Serializer):
             except Usuario.DoesNotExist:
                 raise serializers.ValidationError('Usuario no encontrado.')
         else:
-            raise serializers.ValidationError('Debe incluir mail y contraseña.')
+            raise serializers.ValidationError('Debe incluir email y contraseña.')
 
 
 class JugadorSerializer(serializers.ModelSerializer):
@@ -162,9 +161,53 @@ class EstadisticaJugadorSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def get_jugador_nombre(self, obj):
-        """ Retorna el nombre completo del jugador """
+        """Retorna el nombre completo del jugador"""
         return f"{obj.idJugador.nombre} {obj.idJugador.apellido}"
-    
-    
-    
 
+
+class TorneoSerializer(serializers.ModelSerializer):
+    """
+    Serializer para el modelo Torneo
+    """
+    class Meta:
+        model = Torneo
+        fields = '__all__'
+
+
+class ResultadoSerializer(serializers.ModelSerializer):
+    """
+    Serializer para el modelo Resultado
+    """
+    partido_info = serializers.SerializerMethodField(read_only=True)
+    ganador_nombre = serializers.CharField(source='ganador.nombre', read_only=True)
+    
+    class Meta:
+        model = Resultado
+        fields = '__all__'
+    
+    def get_partido_info(self, obj):
+        """Retorna información del partido"""
+        return f"{obj.idPartido.equipoA} vs {obj.idPartido.equipoB}"
+
+
+class TablaPosicionesSerializer(serializers.ModelSerializer):
+    """
+    Serializer para el modelo TablaPosiciones
+    """
+    torneo_nombre = serializers.CharField(source='idTorneo.nombre', read_only=True)
+    
+    class Meta:
+        model = TablaPosiciones
+        fields = '__all__'
+
+
+class PosicionSerializer(serializers.ModelSerializer):
+    """
+    Serializer para el modelo Posicion
+    """
+    equipo_nombre = serializers.CharField(source='idEquipo.nombre', read_only=True)
+    torneo_nombre = serializers.CharField(source='idTabla.idTorneo.nombre', read_only=True)
+    
+    class Meta:
+        model = Posicion
+        fields = '__all__'
