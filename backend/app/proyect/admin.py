@@ -22,9 +22,8 @@ class UsuarioAdmin(BaseUserAdmin):
     # Campos que se muestran en la lista
     list_display = [
         'idUsuario',
-        'mail', 
+        'email', 
         'username', 
-        'nombre',
         'rol_id',
         'is_active',
         'date_joined'
@@ -40,9 +39,8 @@ class UsuarioAdmin(BaseUserAdmin):
     
     # Campos por los que se puede buscar
     search_fields = [
-        'mail',
-        'username',
-        'nombre'
+        'email',
+        'username'
     ]
     
     # Campos de solo lectura
@@ -57,13 +55,10 @@ class UsuarioAdmin(BaseUserAdmin):
     # Campos agrupados en el formulario de edición
     fieldsets = (
         ('Información Básica', {
-            'fields': ('username', 'mail', 'password')
+            'fields': ('username', 'email', 'password')
         }),
-        ('Información Personal', {
-            'fields': (
-                'nombre',
-                'rol_id'
-            )
+        ('Información Adicional', {
+            'fields': ('rol_id',)
         }),
         ('Permisos', {
             'fields': (
@@ -85,10 +80,10 @@ class UsuarioAdmin(BaseUserAdmin):
     add_fieldsets = (
         ('Información Básica', {
             'classes': ('wide',),
-            'fields': ('username', 'mail', 'password1', 'password2'),
+            'fields': ('username', 'email', 'password1', 'password2'),
         }),
-        ('Información Personal', {
-            'fields': ('nombre', 'rol_id')
+        ('Información Adicional', {
+            'fields': ('rol_id',)
         }),
     )
 
