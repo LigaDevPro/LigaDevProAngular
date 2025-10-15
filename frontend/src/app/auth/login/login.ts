@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Auth } from '../../services/auth';
-
+import { NotificacionService } from '../../services/notificacion';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +21,9 @@ export class Login implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private authService: Auth,
-    private router: Router
-  ) 
-  {
+    private router: Router,
+    private notificacion: NotificacionService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -55,20 +55,27 @@ export class Login implements OnInit {
             localStorage.setItem('token', response.token);
             localStorage.setItem('usuario', JSON.stringify(response.user));
 
-            
+            // Determinar a qué dashboard redirigir según el rol
+            const esAdmin =
+              response.user.rol_nombre === 'Administrador' || response.user.rol_id === 1;
+            const dashboardUrl = esAdmin ? '/dashboard' : '/dashboard-usuario';
+
+            this.notificacion.success(`¡Bienvenido ${response.user.username}!`);
             setTimeout(() => {
-              this.router.navigate(['/dashboard']);
+              this.router.navigate([dashboardUrl]);
             }, 1000);
+          } else {
+            this.notificacion.error('Usuario o contraseña incorrectos');
           }
         },
         error: (err) => {
           console.error('❌ Error en login:', err);
-          
+          this.notificacion.error('Usuario o contraseña incorrectos. Verifica tus credenciales.');
         },
       });
     } else {
       this.loginForm.markAllAsTouched();
-      
+      this.notificacion.warning('Por favor completa todos los campos correctamente.');
     }
   }
 

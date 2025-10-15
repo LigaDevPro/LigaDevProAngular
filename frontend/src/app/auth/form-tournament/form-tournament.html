@@ -37,25 +37,6 @@
           }
         </div>
 
-        <div class="field field-ubicacion">
-          <label for="ubicacion">Ubicación</label>
-          <input
-            id="ubicacion"
-            type="text"
-            formControlName="ubicacion"
-            placeholder="Ej: Estadio Municipal"
-          />
-          @if (ubicacion?.touched && ubicacion?.invalid) {
-          <div class="error">
-            @if (ubicacion?.errors?.['required']) {
-            <small>La ubicación es obligatoria.</small>
-            } @if (ubicacion?.errors?.['minlength']) {
-            <small>Mínimo 5 caracteres.</small>
-            }
-          </div>
-          }
-        </div>
-
         <div class="field">
           <label for="descripcion">Descripción (opcional)</label>
           <textarea

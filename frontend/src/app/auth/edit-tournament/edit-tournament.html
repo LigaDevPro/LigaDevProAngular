@@ -1,0 +1,163 @@
+<main class="edit-tournament-section">
+  <div class="container">
+    <div class="form-card">
+      <h2 class="text-center mb-4">✏️ Editar Torneo</h2>
+      
+      @if (cargando) {
+      <div class="loading-spinner text-center">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando datos del torneo...</p>
+      </div>
+      } @else {
+      <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre del Torneo -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">
+            <i class="fas fa-trophy me-2"></i>Nombre del Torneo
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            formControlName="nombre"
+            placeholder="Ej: Liga Profesional 2024"
+            [class.is-invalid]="tournamentForm.get('nombre')?.invalid && tournamentForm.get('nombre')?.touched"
+          />
+          @if (tournamentForm.get('nombre')?.invalid && tournamentForm.get('nombre')?.touched) {
+          <div class="invalid-feedback">
+            @if (tournamentForm.get('nombre')?.errors?.['required']) {
+            El nombre del torneo es requerido
+            }
+            @if (tournamentForm.get('nombre')?.errors?.['minlength']) {
+            El nombre debe tener al menos 3 caracteres
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Descripción -->
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">
+            <i class="fas fa-align-left me-2"></i>Descripción (opcional)
+          </label>
+          <textarea
+            id="descripcion"
+            class="form-control"
+            formControlName="descripcion"
+            rows="3"
+            placeholder="Breve descripción del torneo..."
+          ></textarea>
+        </div>
+
+        <!-- Formato -->
+        <div class="mb-3">
+          <label for="formato" class="form-label">
+            <i class="fas fa-sitemap me-2"></i>Formato
+          </label>
+          <select
+            id="formato"
+            class="form-select"
+            formControlName="formato"
+            [class.is-invalid]="tournamentForm.get('formato')?.invalid && tournamentForm.get('formato')?.touched"
+          >
+            <option value="">Selecciona un formato</option>
+            @for (formato of formatos; track formato) {
+            <option [value]="formato">{{ formato }}</option>
+            }
+          </select>
+          @if (tournamentForm.get('formato')?.invalid && tournamentForm.get('formato')?.touched) {
+          <div class="invalid-feedback">
+            El formato es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Fechas -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="fechaInicio" class="form-label">
+              <i class="fas fa-calendar-alt me-2"></i>Fecha de Inicio
+            </label>
+            <input
+              type="date"
+              id="fechaInicio"
+              class="form-control"
+              formControlName="fechaInicio"
+              [class.is-invalid]="tournamentForm.get('fechaInicio')?.invalid && tournamentForm.get('fechaInicio')?.touched"
+            />
+            @if (tournamentForm.get('fechaInicio')?.invalid && tournamentForm.get('fechaInicio')?.touched) {
+            <div class="invalid-feedback">
+              La fecha de inicio es requerida
+            </div>
+            }
+          </div>
+
+          <div class="col-md-6">
+            <label for="fechaFinal" class="form-label">
+              <i class="fas fa-calendar-check me-2"></i>Fecha Final
+            </label>
+            <input
+              type="date"
+              id="fechaFinal"
+              class="form-control"
+              formControlName="fechaFinal"
+              [class.is-invalid]="tournamentForm.get('fechaFinal')?.invalid && tournamentForm.get('fechaFinal')?.touched"
+            />
+            @if (tournamentForm.get('fechaFinal')?.invalid && tournamentForm.get('fechaFinal')?.touched) {
+            <div class="invalid-feedback">
+              La fecha final es requerida
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="mb-4">
+          <label for="estado" class="form-label">
+            <i class="fas fa-flag me-2"></i>Estado
+          </label>
+          <select
+            id="estado"
+            class="form-select"
+            formControlName="estado"
+            [class.is-invalid]="tournamentForm.get('estado')?.invalid && tournamentForm.get('estado')?.touched"
+          >
+            @for (estado of estados; track estado.value) {
+            <option [value]="estado.value">{{ estado.label }}</option>
+            }
+          </select>
+          @if (tournamentForm.get('estado')?.invalid && tournamentForm.get('estado')?.touched) {
+          <div class="invalid-feedback">
+            El estado es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex gap-2 justify-content-end">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelar()"
+            [disabled]="cargando"
+          >
+            <i class="fas fa-times me-2"></i>Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-warning text-white"
+            [disabled]="tournamentForm.invalid || cargando"
+          >
+            @if (cargando) {
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            }
+            <i class="fas fa-save me-2"></i>Guardar Cambios
+          </button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+</main>

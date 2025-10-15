@@ -1,5 +1,40 @@
 <main class="team-section">
   <div class="page">
+    <!-- Modal de Credenciales Generadas -->
+    @if (mostrarCredenciales) {
+    <div class="modal-overlay" (click)="irAlDashboard()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>✅ ¡Equipo Creado Exitosamente!</h2>
+        <p class="alert alert-warning">
+          <strong>⚠️ Importante:</strong> Guarda estas credenciales. Los jugadores las necesitarán
+          para acceder.
+        </p>
+
+        <div class="credenciales-lista">
+          <h3>🔑 Credenciales de Acceso</h3>
+          @for (cred of credencialesGeneradas; track cred.email) {
+          <div class="credencial-card">
+            <h4>{{ cred.nombre }}</h4>
+            <p><strong>Email:</strong> {{ cred.email }}</p>
+            <p>
+              <strong>Contraseña:</strong> <code>{{ cred.password }}</code>
+            </p>
+          </div>
+          }
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-primary" (click)="copiarCredenciales()">
+            📋 Copiar Credenciales
+          </button>
+          <button type="button" class="btn btn-success" (click)="irAlDashboard()">
+            ✅ Ir al Dashboard
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+
     <div class="card">
       <h2 class="title">Crear Equipo</h2>
 
@@ -77,20 +112,57 @@
 
               <div class="jugador-fields">
                 <div class="field">
-                  <label [for]="'nombreCompleto_' + $index">Nombre completo</label>
+                  <label [for]="'nombre_' + $index">Nombre</label>
                   <input
-                    [id]="'nombreCompleto_' + $index"
+                    [id]="'nombre_' + $index"
                     type="text"
-                    formControlName="nombreCompleto"
-                    placeholder="Ej: Carlos González"
+                    formControlName="nombre"
+                    placeholder="Ej: Carlos"
                   />
-                  @if (jugador.get('nombreCompleto')?.touched &&
-                  jugador.get('nombreCompleto')?.invalid) {
+                  @if (jugador.get('nombre')?.touched && jugador.get('nombre')?.invalid) {
                   <div class="error">
-                    @if (jugador.get('nombreCompleto')?.errors?.['required']) {
+                    @if (jugador.get('nombre')?.errors?.['required']) {
                     <small>El nombre es obligatorio.</small>
-                    } @if (jugador.get('nombreCompleto')?.errors?.['minlength']) {
-                    <small>Mínimo 5 caracteres.</small>
+                    } @if (jugador.get('nombre')?.errors?.['minlength']) {
+                    <small>Mínimo 2 caracteres.</small>
+                    }
+                  </div>
+                  }
+                </div>
+
+                <div class="field">
+                  <label [for]="'apellido_' + $index">Apellido</label>
+                  <input
+                    [id]="'apellido_' + $index"
+                    type="text"
+                    formControlName="apellido"
+                    placeholder="Ej: González"
+                  />
+                  @if (jugador.get('apellido')?.touched && jugador.get('apellido')?.invalid) {
+                  <div class="error">
+                    @if (jugador.get('apellido')?.errors?.['required']) {
+                    <small>El apellido es obligatorio.</small>
+                    } @if (jugador.get('apellido')?.errors?.['minlength']) {
+                    <small>Mínimo 2 caracteres.</small>
+                    }
+                  </div>
+                  }
+                </div>
+
+                <div class="field">
+                  <label [for]="'email_' + $index">Email del jugador</label>
+                  <input
+                    [id]="'email_' + $index"
+                    type="email"
+                    formControlName="email"
+                    placeholder="Ej: carlos.gonzalez@email.com"
+                  />
+                  @if (jugador.get('email')?.touched && jugador.get('email')?.invalid) {
+                  <div class="error">
+                    @if (jugador.get('email')?.errors?.['required']) {
+                    <small>El email es obligatorio.</small>
+                    } @if (jugador.get('email')?.errors?.['email']) {
+                    <small>Email inválido.</small>
                     }
                   </div>
                   }

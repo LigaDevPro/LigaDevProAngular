@@ -8,9 +8,10 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Auth } from '../../services/auth';
 import { CreateUsuario } from '../../models/usuarios';
-
+import { NotificacionService } from '../../services/notificacion';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -25,7 +26,9 @@ export class Register implements OnInit {
     private fb: FormBuilder,
     private titleService: Title,
     private metaService: Meta,
-    private authService: Auth
+    private authService: Auth,
+    private router: Router,
+    private notificacion: NotificacionService
   ) {
     this.registerForm = this.fb.group(
       {
@@ -61,22 +64,32 @@ export class Register implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const usuario: CreateUsuario = {
+      const usuarioData: CreateUsuario = {
         username: this.registerForm.value.username,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
+        rol_id: 2,
       };
-      this.authService.crearUsuario(usuario).subscribe({
-        next: () => {
-          alert('Registro exitoso 🎉');
+
+
+      this.authService.crearUsuario(usuarioData).subscribe({
+        next: (response) => {
+          this.notificacion.success('¡Registro exitoso! Redirigiendo al login...');
           this.registerForm.reset();
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 1500);
         },
-        error: () => {
-          alert('Error al registrar el usuario');
+        error: (err) => {
+          console.error('❌ Error al registrar:', err);
+          this.notificacion.error(
+            'Error al registrar el usuario. Verifica los datos e intenta nuevamente.'
+          );
         },
       });
     } else {
       this.registerForm.markAllAsTouched();
+      this.notificacion.warning('Por favor completa todos los campos correctamente.');
     }
   }
 

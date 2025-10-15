@@ -1,0 +1,164 @@
+<main class="edit-team-section">
+  <div class="container">
+    <div class="form-card">
+      <h2 class="text-center mb-4">✏️ Editar Equipo</h2>
+
+      @if (cargando) {
+      <div class="loading-spinner text-center">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando datos del equipo...</p>
+      </div>
+      } @else {
+      <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre del Equipo -->
+        <div class="mb-4">
+          <label for="nombre" class="form-label">
+            <i class="fas fa-shield-alt me-2"></i>Nombre del Equipo
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            formControlName="nombre"
+            placeholder="Ej: River Plate"
+            [class.is-invalid]="teamForm.get('nombre')?.invalid && teamForm.get('nombre')?.touched"
+          />
+          @if (teamForm.get('nombre')?.invalid && teamForm.get('nombre')?.touched) {
+          <div class="invalid-feedback">
+            @if (teamForm.get('nombre')?.errors?.['required']) { El nombre del equipo es requerido }
+            @if (teamForm.get('nombre')?.errors?.['minlength']) { El nombre debe tener al menos 3
+            caracteres }
+          </div>
+          }
+        </div>
+
+        <!-- Entrenador -->
+        <div class="mb-4">
+          <label for="entrenador" class="form-label">
+            <i class="fas fa-user-tie me-2"></i>Entrenador
+          </label>
+          <input
+            type="text"
+            id="entrenador"
+            class="form-control"
+            formControlName="entrenador"
+            placeholder="Ej: Marcelo Gallardo"
+            [class.is-invalid]="
+              teamForm.get('entrenador')?.invalid && teamForm.get('entrenador')?.touched
+            "
+          />
+          @if (teamForm.get('entrenador')?.invalid && teamForm.get('entrenador')?.touched) {
+          <div class="invalid-feedback">
+            @if (teamForm.get('entrenador')?.errors?.['required']) { El nombre del entrenador es
+            requerido } @if (teamForm.get('entrenador')?.errors?.['minlength']) { El nombre debe
+            tener al menos 3 caracteres }
+          </div>
+          }
+        </div>
+
+        <!-- Lista de Jugadores -->
+        @if (jugadores.length > 0) {
+        <div class="jugadores-section mb-4">
+          <h4 class="jugadores-title">
+            <i class="fas fa-users me-2"></i>Jugadores del Equipo ({{ jugadores.length }})
+          </h4>
+          <div class="jugadores-list">
+            @for (jugador of jugadores; track jugador.idJugador) {
+            <div class="jugador-item">
+              <div class="jugador-info">
+                <span class="jugador-numero">#{{ jugador.numeroPosicion }}</span>
+                <div class="jugador-datos">
+                  <strong>{{ jugador.nombre }} {{ jugador.apellido }}</strong>
+                  <small>{{ jugador.posicion }}</small>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="confirmarQuitarJugador(jugador)"
+                [disabled]="cargando"
+                title="Quitar del equipo"
+              >
+                <i class="fas fa-user-minus"></i>
+              </button>
+            </div>
+            }
+          </div>
+        </div>
+        } @else {
+        <div class="alert alert-warning mb-4">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <strong>Sin jugadores:</strong> Este equipo no tiene jugadores asignados.
+        </div>
+        }
+
+        <!-- Botones -->
+        <div class="d-flex gap-2 justify-content-end">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelar()"
+            [disabled]="cargando"
+          >
+            <i class="fas fa-times me-2"></i>Cancelar
+          </button>
+          <button type="submit" class="btn btn-success" [disabled]="teamForm.invalid || cargando">
+            @if (cargando) {
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            }
+            <i class="fas fa-save me-2"></i>Guardar Cambios
+          </button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  @if (mostrarModalEliminarJugador && jugadorAEliminar) {
+  <div class="modal-overlay" (click)="cerrarModalEliminarJugador()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3 class="text-warning">⚠️ Quitar Jugador del Equipo</h3>
+      <p class="mt-3">
+        ¿Estás seguro que deseas quitar a
+        <strong>{{ jugadorAEliminar.nombre }} {{ jugadorAEliminar.apellido }}</strong> del equipo?
+      </p>
+
+      <div class="jugador-info-modal">
+        <div><strong>Número:</strong> {{ jugadorAEliminar.numeroPosicion }}</div>
+        <div><strong>Posición:</strong> {{ jugadorAEliminar.posicion }}</div>
+      </div>
+
+      <div class="alert alert-info mt-3">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Nota:</strong> El jugador no será eliminado de la base de datos, solo se quitará de
+        este equipo.
+      </div>
+
+      <div class="modal-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="cerrarModalEliminarJugador()"
+          [disabled]="cargando"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="quitarJugador()"
+          [disabled]="cargando"
+        >
+          @if (cargando) {
+          <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+          }
+          <i class="fas fa-user-minus me-2"></i>Sí, Quitar del Equipo
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</main>

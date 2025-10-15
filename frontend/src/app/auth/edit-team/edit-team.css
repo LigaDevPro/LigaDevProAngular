@@ -1,0 +1,349 @@
+.edit-team-section {
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-card {
+  background-color: #191a19;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.form-card h2 {
+  color: #d8e9a8;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #d8e9a8;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.form-label i {
+  margin-right: 8px;
+}
+
+.form-control {
+  background-color: #515966;
+  border: none;
+  border-radius: 3px;
+  padding: 15px;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-control:focus {
+  background-color: #5a6270;
+  border: none;
+  box-shadow: 0 0 0 0.2rem rgba(78, 159, 61, 0.25);
+  color: #ffffff;
+  outline: none;
+}
+
+.form-control.is-invalid {
+  border: 2px solid rgb(163, 66, 66);
+  background-color: #515966;
+}
+
+.invalid-feedback {
+  display: block;
+  color: rgb(163, 66, 66);
+  font-size: 0.875rem;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.alert {
+  background-color: #515966;
+  border: 1px solid #d8e9a8;
+  color: #d8e9a8;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.alert i {
+  color: #4e9f3d;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: none;
+}
+
+.btn-success {
+  background-color: #4e9f3d !important;
+  border-color: #4e9f3d !important;
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #1e5128 !important;
+  border-color: #1e5128 !important;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #515966;
+  color: #d8e9a8;
+  border: 1px solid #d8e9a8;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #3a4149;
+  color: #d8e9a8;
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading-spinner {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.loading-spinner p {
+  color: #d8e9a8;
+  margin-top: 15px;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-color: #4e9f3d;
+  border-right-color: transparent;
+}
+
+.spinner-border-sm {
+  border-color: #ffffff;
+  border-right-color: transparent;
+}
+
+/* Jugadores Section */
+.jugadores-section {
+  background-color: #2a2b2a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #515966;
+}
+
+.jugadores-title {
+  color: #d8e9a8;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.jugadores-title i {
+  color: #4e9f3d;
+}
+
+.jugadores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jugador-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #515966;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.jugador-item:hover {
+  background-color: #5a6270;
+  transform: translateX(5px);
+}
+
+.jugador-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.jugador-numero {
+  background-color: #4e9f3d;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.jugador-datos {
+  display: flex;
+  flex-direction: column;
+}
+
+.jugador-datos strong {
+  color: #d8e9a8;
+  font-size: 1rem;
+}
+
+.jugador-datos small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333 !important;
+  border-color: #bd2130 !important;
+}
+
+.alert-warning {
+  background-color: #515966;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+}
+
+.alert-warning i {
+  color: #ffc107;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #191a19;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  color: #d8e9a8;
+}
+
+.modal-content h3 {
+  color: #ffc107;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #d8e9a8;
+  font-size: 1rem;
+}
+
+.modal-content p strong {
+  color: #ffffff;
+}
+
+.jugador-info-modal {
+  background-color: #515966;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.jugador-info-modal div {
+  color: #d8e9a8;
+  margin: 5px 0;
+}
+
+.jugador-info-modal strong {
+  color: #4e9f3d;
+}
+
+.modal-content .alert-info {
+  background-color: #515966;
+  border: 1px solid #17a2b8;
+  color: #d8e9a8;
+}
+
+.modal-content .alert-info i {
+  color: #17a2b8;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 30px 20px;
+  }
+
+  .edit-team-section {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .jugador-item {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .jugador-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}

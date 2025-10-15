@@ -2,8 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Equipos } from '../../services/equipos';
-import { CreateJugador } from '../../models/jugador';
+import { UsuariosService } from '../../services/usuarios';
+import { Usuario } from '../../models/usuarios';
+import { CreateJugador, Jugador } from '../../models/jugador';
+import { CreateEquipo, Equipo } from '../../models/equipo';
+import { forkJoin, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { NotificacionService } from '../../services/notificacion';
 
 @Component({
   selector: 'app-form-team',
@@ -14,12 +22,18 @@ import { CreateJugador } from '../../models/jugador';
 })
 export class FormTeam implements OnInit {
   formTeam: FormGroup;
+  credencialesGeneradas: { nombre: string; email: string; password: string }[] = [];
+  mostrarCredenciales = false;
 
   constructor(
     private fb: FormBuilder,
     private titleService: Title,
     private metaService: Meta,
-    private equiposService: Equipos
+    private equiposService: Equipos,
+    private usuariosService: UsuariosService,
+    private router: Router,
+    private http: HttpClient,
+    private notificacion: NotificacionService
   ) {
     this.formTeam = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -51,7 +65,9 @@ export class FormTeam implements OnInit {
 
   createJugadorFormGroup(): FormGroup {
     return this.fb.group({
-      nombreCompleto: ['', [Validators.required, Validators.minLength(5)]],
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
       numeroPosicion: [null, [Validators.required, Validators.min(1), Validators.max(99)]],
     });
   }
@@ -97,27 +113,111 @@ export class FormTeam implements OnInit {
     return posiciones[numero] || 'Suplente';
   }
 
+  getPosicionNumero(numero: number): 'arquero' | 'defensor' | 'mediocampo' | 'delantero' {
+    // Convertir a formato del backend
+    if (numero === 1) return 'arquero';
+    if (numero >= 2 && numero <= 5) return 'defensor';
+    if (numero >= 6 && numero <= 10) return 'mediocampo';
+    return 'delantero';
+  }
+
+  generarPassword(): string {
+    // Generar contraseña aleatoria de 8 caracteres
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+    let password = '';
+    for (let i = 0; i < 8; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  }
+
   onSubmit(): void {
     if (this.formTeam.valid && this.jugadoresArray.length > 0) {
       const formData = this.formTeam.value;
+      this.credencialesGeneradas = [];
 
-      const equipoData = {
+      // Crear el equipo
+      const equipoData: CreateEquipo = {
         nombre: formData.nombre,
         entrenador: formData.entrenador,
-        jugadores: formData.jugadores.map((jugador: CreateJugador) => ({
-          ...jugador,
-          posicion: this.getPosicionJugador(jugador.numeroPosicion),
-        })),
       };
 
-      this.equiposService.createEquipo(equipoData).subscribe({
-        next: () => {
-          this.resetForm();
-        },
-        error: (error) => {
-          console.error('Error al crear el equipo:', error);
-        },
-      });
+      this.equiposService
+        .createEquipo(equipoData)
+        .pipe(
+          switchMap((equipoCreado: Equipo) => {
+            // Crear usuarios para los jugadores
+            const usuariosObservables: Observable<Usuario>[] = formData.jugadores.map(
+              (jugador: any) => {
+                const password = this.generarPassword();
+
+                this.credencialesGeneradas.push({
+                  nombre: `${jugador.nombre} ${jugador.apellido}`,
+                  email: jugador.email,
+                  password: password,
+                });
+
+                const usuarioData = {
+                  username: `${jugador.nombre.toLowerCase()}.${jugador.apellido.toLowerCase()}`,
+                  email: jugador.email,
+                  password: password,
+                  rol_id: 2,
+                };
+                return this.usuariosService.createUsuario(usuarioData);
+              }
+            );
+
+            if (usuariosObservables.length === 0) {
+              return forkJoin([]) as Observable<any[]>;
+            }
+
+            return (forkJoin(usuariosObservables) as Observable<Usuario[]>).pipe(
+              switchMap((usuariosCreados: Usuario[]) => {
+                // Crear jugadores
+                const jugadoresObservables: Observable<Jugador>[] = formData.jugadores.map(
+                  (jugador: any, index: number) => {
+                    const jugadorData: CreateJugador = {
+                      idUsuario: usuariosCreados[index].idUsuario,
+                      nombre: jugador.nombre,
+                      apellido: jugador.apellido,
+                      numeroPosicion: jugador.numeroPosicion,
+                      posicion: this.getPosicionNumero(jugador.numeroPosicion),
+                      idEquipo: equipoCreado.idEquipo,
+                    };
+                    return this.http.post<Jugador>(
+                      'http://localhost:8000/api/jugadores/',
+                      jugadorData
+                    );
+                  }
+                );
+
+                if (jugadoresObservables.length === 0) {
+                  return forkJoin([]) as Observable<Jugador[]>;
+                }
+
+                return forkJoin(jugadoresObservables) as Observable<Jugador[]>;
+              })
+            );
+          })
+        )
+        .subscribe({
+          next: (jugadoresCreados: Jugador[]) => {
+            const count = Array.isArray(jugadoresCreados) ? jugadoresCreados.length : 0;
+
+            this.notificacion.success('¡Equipo creado exitosamente!');
+            // Mostrar credenciales generadas
+            this.mostrarCredenciales = true;
+          },
+          error: (error: any) => {
+            console.error('❌ Error al crear el equipo:', error);
+            this.notificacion.error(
+              'Error al crear el equipo. Verifica los datos e intenta nuevamente.'
+            );
+          },
+        });
+    } else {
+      this.formTeam.markAllAsTouched();
+      this.notificacion.warning('Por favor completa todos los campos correctamente.');
     }
   }
 
@@ -127,6 +227,23 @@ export class FormTeam implements OnInit {
       this.jugadoresArray.removeAt(0);
     }
     this.addJugador();
+    this.mostrarCredenciales = false;
+    this.credencialesGeneradas = [];
+  }
+
+  copiarCredenciales(): void {
+    const texto = this.credencialesGeneradas
+      .map((c) => `${c.nombre}\nEmail: ${c.email}\nContraseña: ${c.password}\n`)
+      .join('\n');
+
+    navigator.clipboard.writeText(texto).then(
+      () => this.notificacion.success('Credenciales copiadas al portapapeles'),
+      () => this.notificacion.error('Error al copiar credenciales')
+    );
+  }
+
+  irAlDashboard(): void {
+    this.router.navigate(['/dashboard']);
   }
 
   get nombre() {

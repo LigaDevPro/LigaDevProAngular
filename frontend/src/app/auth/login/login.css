@@ -50,14 +50,6 @@ input::placeholder {
   color: #ffffff;
 }
 
-.recuperar-contraseña {
-  color: #d8e9a8;
-  font-size: 0.9rem;
-  margin-top: 15px;
-  display: block;
-  text-align: center;
-}
-
 .btn-field {
   display: flex;
   flex-direction: column;

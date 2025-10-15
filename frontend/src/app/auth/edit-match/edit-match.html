@@ -1,0 +1,158 @@
+<main class="edit-match-section">
+  <div class="container">
+    <div class="form-card">
+      <h2 class="text-center mb-4">✏️ Editar Partido</h2>
+      
+      @if (cargando) {
+      <div class="loading-spinner text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando datos del partido...</p>
+      </div>
+      } @else {
+      <form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
+        <!-- Fecha del Partido -->
+        <div class="mb-3">
+          <label for="fecha" class="form-label">Fecha del Partido</label>
+          <input
+            type="date"
+            id="fecha"
+            class="form-control"
+            formControlName="fecha"
+            [class.is-invalid]="matchForm.get('fecha')?.invalid && matchForm.get('fecha')?.touched"
+          />
+          @if (matchForm.get('fecha')?.invalid && matchForm.get('fecha')?.touched) {
+          <div class="invalid-feedback">
+            La fecha es requerida
+          </div>
+          }
+        </div>
+
+        <!-- Torneo -->
+        <div class="mb-3">
+          <label for="idTorneo" class="form-label">Torneo</label>
+          <select
+            id="idTorneo"
+            class="form-select"
+            formControlName="idTorneo"
+            [class.is-invalid]="matchForm.get('idTorneo')?.invalid && matchForm.get('idTorneo')?.touched"
+          >
+            <option value="">Selecciona un torneo</option>
+            @for (torneo of torneos; track torneo.idTorneo) {
+            <option [value]="torneo.idTorneo">{{ torneo.nombre }}</option>
+            }
+          </select>
+          @if (matchForm.get('idTorneo')?.invalid && matchForm.get('idTorneo')?.touched) {
+          <div class="invalid-feedback">
+            El torneo es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Equipo Local -->
+        <div class="mb-3">
+          <label for="idEquipoLocal" class="form-label">Equipo Local</label>
+          <select
+            id="idEquipoLocal"
+            class="form-select"
+            formControlName="idEquipoLocal"
+            [class.is-invalid]="matchForm.get('idEquipoLocal')?.invalid && matchForm.get('idEquipoLocal')?.touched"
+          >
+            <option value="">Selecciona un equipo</option>
+            @for (equipo of equipos; track equipo.idEquipo) {
+            <option [value]="equipo.idEquipo">{{ equipo.nombre }}</option>
+            }
+          </select>
+          @if (matchForm.get('idEquipoLocal')?.invalid && matchForm.get('idEquipoLocal')?.touched) {
+          <div class="invalid-feedback">
+            El equipo local es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Equipo Visitante -->
+        <div class="mb-3">
+          <label for="idEquipoVisitante" class="form-label">Equipo Visitante</label>
+          <select
+            id="idEquipoVisitante"
+            class="form-select"
+            formControlName="idEquipoVisitante"
+            [class.is-invalid]="matchForm.get('idEquipoVisitante')?.invalid && matchForm.get('idEquipoVisitante')?.touched"
+          >
+            <option value="">Selecciona un equipo</option>
+            @for (equipo of equipos; track equipo.idEquipo) {
+            <option [value]="equipo.idEquipo">{{ equipo.nombre }}</option>
+            }
+          </select>
+          @if (matchForm.get('idEquipoVisitante')?.invalid && matchForm.get('idEquipoVisitante')?.touched) {
+          <div class="invalid-feedback">
+            El equipo visitante es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Resultado -->
+        <div class="mb-3">
+          <label for="resultado" class="form-label">Resultado</label>
+          <input
+            type="text"
+            id="resultado"
+            class="form-control"
+            formControlName="resultado"
+            placeholder="Ej: 2-1 o Pendiente"
+            [class.is-invalid]="matchForm.get('resultado')?.invalid && matchForm.get('resultado')?.touched"
+          />
+          @if (matchForm.get('resultado')?.invalid && matchForm.get('resultado')?.touched) {
+          <div class="invalid-feedback">
+            El resultado es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Estado -->
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select
+            id="estado"
+            class="form-select"
+            formControlName="estado"
+            [class.is-invalid]="matchForm.get('estado')?.invalid && matchForm.get('estado')?.touched"
+          >
+            @for (estado of estados; track estado.value) {
+            <option [value]="estado.value">{{ estado.label }}</option>
+            }
+          </select>
+          @if (matchForm.get('estado')?.invalid && matchForm.get('estado')?.touched) {
+          <div class="invalid-feedback">
+            El estado es requerido
+          </div>
+          }
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex gap-2 justify-content-end">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelar()"
+            [disabled]="cargando"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="matchForm.invalid || cargando"
+          >
+            @if (cargando) {
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            }
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+      }
+    </div>
+  </div>
+</main>

@@ -1,0 +1,529 @@
+/* Estilos para el formulario de crear equipo */
+.team-section {
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 120px; /* Espacio para el navbar */
+  padding-bottom: 5vh;
+  background-color: var(--color-green-pastel);
+}
+
+/* Modal de credenciales */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: #191a19;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+  color: var(--color-green-light);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  color: #ffc107;
+}
+
+.credenciales-lista {
+  margin: 20px 0;
+}
+
+.credenciales-lista h3 {
+  color: var(--color-green-light);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.credencial-card {
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid var(--color-green-light);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.credencial-card h4 {
+  color: var(--color-green-light);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.credencial-card p {
+  margin: 5px 0;
+  color: #e0e0e0;
+}
+
+.credencial-card code {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: var(--color-green-light);
+  font-family: monospace;
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.modal-actions button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-green-dark);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-green-light);
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background-color: var(--color-green-light);
+  color: #191a19;
+}
+
+.btn-success:hover {
+  background-color: #66bb6a;
+  transform: translateY(-2px);
+}
+
+.page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 800px;
+  background-color: #191a19;
+  padding: 30px;
+  border-radius: 25px;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  text-align: center;
+  color: #d8e9a8;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Sección de información del equipo */
+.team-info {
+  background-color: rgba(88, 89, 88, 0.3);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(216, 233, 168, 0.2);
+}
+
+.team-info h3 {
+  color: #d8e9a8;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+/* Sección de jugadores */
+.jugadores-section {
+  background-color: rgba(88, 89, 88, 0.3);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(216, 233, 168, 0.2);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.section-title h3 {
+  color: #d8e9a8;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.jugadores-counter {
+  color: #d8e9a8;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background-color: rgba(78, 159, 61, 0.2);
+  padding: 5px 10px;
+  border-radius: 15px;
+  align-self: flex-start;
+}
+
+/* Botón agregar jugador */
+.btn-add {
+  background-color: #4e9f3d;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-add:hover:not(:disabled) {
+  background-color: #1e5128;
+}
+
+.btn-add:disabled,
+.btn-add.disabled {
+  background-color: #515966;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-add i {
+  font-size: 0.9rem;
+}
+
+/* Lista de jugadores */
+.jugadores-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.jugador-card {
+  background-color: rgba(81, 89, 102, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(216, 233, 168, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.jugador-card:hover {
+  border-color: rgba(216, 233, 168, 0.3);
+}
+
+.jugador-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.jugador-header h4 {
+  color: #d8e9a8;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.btn-remove {
+  background-color: #dc3545;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove:hover {
+  background-color: #c82333;
+}
+
+.btn-remove i {
+  font-size: 0.9rem;
+}
+
+.jugador-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Campos del formulario */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-weight: bold;
+  color: #d8e9a8;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.field input {
+  width: 100%;
+  background-color: #515966;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.field input:focus {
+  background-color: #5a6470;
+}
+
+.field input::placeholder {
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+.field input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.field input[type='number']::-webkit-outer-spin-button,
+.field input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Información de posición */
+.posicion-info {
+  background-color: rgba(78, 159, 61, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 3px solid #4e9f3d;
+}
+
+.posicion-text {
+  color: #d8e9a8;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.posicion-text strong {
+  color: #ffffff;
+}
+
+/* Mensaje sin jugadores */
+.no-jugadores {
+  text-align: center;
+  padding: 40px 20px;
+  color: #d8e9a8;
+  font-style: italic;
+}
+
+/* Acciones del formulario */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 14px 25px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 150px;
+}
+
+.btn-primary {
+  background-color: #4e9f3d;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1e5128;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+.btn:disabled {
+  background-color: #515966;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Información del formulario */
+.form-info {
+  background-color: rgba(216, 233, 168, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #d8e9a8;
+  margin-top: 20px;
+}
+
+.form-info p {
+  color: #d8e9a8;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Mensajes de error */
+.error {
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.error small {
+  display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .team-section {
+    padding-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .jugadores-counter {
+    align-self: center;
+  }
+
+  .btn-add {
+    justify-content: center;
+  }
+
+  .jugador-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .jugador-header h4 {
+    text-align: center;
+  }
+
+  .btn-remove {
+    align-self: center;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-section {
+    padding-top: 80px;
+  }
+
+  .card {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .team-info,
+  .jugadores-section {
+    padding: 15px;
+  }
+
+  .jugador-card {
+    padding: 15px;
+  }
+}
