@@ -11,6 +11,32 @@ export class Auth {
 
   constructor(private http: HttpClient) {}
 
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  getCurrentUser(): Usuario | null {
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      try {
+        return JSON.parse(usuario);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  isAdmin(): boolean {
+    const usuario = this.getCurrentUser();
+    return usuario?.rol_nombre === 'Administrador' || usuario?.rol_id === 1;
+  }
+
+  hasRole(rolNombre: string): boolean {
+    const usuario = this.getCurrentUser();
+    return usuario?.rol_nombre === rolNombre;
+  }
+
   login(email: string, password: string): Observable<LoginResponse> {
     const url = `${this.apiUrl}/auth/login/`;
     return this.http
