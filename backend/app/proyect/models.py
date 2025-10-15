@@ -30,8 +30,8 @@ class Usuario(AbstractUser):
     rol_id = models.ForeignKey(Rol, on_delete=models.CASCADE, null=True, blank=True, help_text="Rol del usuario")
     
     # Configuración del modelo
-    USERNAME_FIELD = 'mail'
-    REQUIRED_FIELDS = ['username', 'nombre']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
     
     class Meta:
         verbose_name = "Usuario"
@@ -39,7 +39,7 @@ class Usuario(AbstractUser):
         ordering = ['-date_joined']
     
     def __str__(self):
-        return f"{self.nombre} ({self.mail})"
+        return f"{self.username} ({self.email})"
 
 
 class Equipo(models.Model):
