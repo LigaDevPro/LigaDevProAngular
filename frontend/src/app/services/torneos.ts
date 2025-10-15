@@ -22,4 +22,16 @@ export class Torneos {
   getTorneosActivos(): Observable<Torneo[]> {
     return this.http.get<Torneo[]>(this.apiUrl);
   }
+
+  getTorneo(id: number): Observable<Torneo> {
+    return this.http.get<Torneo>(`${this.apiUrl}${id}/`);
+  }
+
+  updateTorneo(id: number, torneo: Partial<CreateTorneo>): Observable<Torneo> {
+    return this.http.put<Torneo>(`${this.apiUrl}${id}/`, torneo);
+  }
+
+  deleteTorneo(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}${id}/`);
+  }
 }

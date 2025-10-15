@@ -17,22 +17,18 @@ import { EstadisticaEquipo, EstadisticaJugador } from '../../models/estadistica'
 import { Jugador } from '../../models/jugador';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dashboard-usuario',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.css'],
+  templateUrl: './dashboard-usuario.html',
+  styleUrls: ['./dashboard-usuario.css'],
 })
-export class Dashboard implements OnInit {
+export class DashboardUsuario implements OnInit {
   matches: Partido[] = [];
   ultimosPartidos: Partido[] = [];
   teams: Equipo[] = [];
   torneosActivos: Torneo[] = [];
-  isAdmin = false;
-
-  // Variables para modales
-  mostrarModalEliminar = false;
-  itemAEliminar: { tipo: string; id: number; nombre: string } | null = null;
+  nombreUsuario = '';
 
   // Variables para modal de detalle
   mostrarModalDetalle = false;
@@ -59,6 +55,44 @@ export class Dashboard implements OnInit {
     private estadisticasService: EstadisticasService,
     private http: HttpClient
   ) {}
+
+  ngOnInit(): void {
+    // Verificar autenticación
+    if (!this.authService.isAuthenticated()) {
+      this.notificacion.warning('Debes iniciar sesión para acceder');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Si es admin, redirigir al dashboard admin
+    if (this.authService.isAdmin()) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
+
+    const usuario = this.authService.getCurrentUser();
+    this.nombreUsuario = usuario?.username || 'Usuario';
+
+
+    this.getMatchesAll();
+    this.getEquiposAll();
+    this.getTorneosActivos();
+    this.getUltimosPartidos();
+
+    this.titleService.setTitle('Mi Dashboard - LigaDevPro');
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content: 'Panel de usuario para ver torneos, equipos y partidos',
+      },
+      { property: 'og:title', content: 'Dashboard Usuario - LigaDevPro' },
+      {
+        property: 'og:description',
+        content: 'Consulta información de torneos y equipos',
+      },
+    ]);
+  }
+
   getUltimosPartidos(): void {
     this.UltimosPartidos.getUltimosPartidos().subscribe({
       next: (data) => {
@@ -144,9 +178,10 @@ export class Dashboard implements OnInit {
     }
   }
 
-  // ==================== ACCIONES DE EQUIPOS ====================
+  // ==================== ACCIONES DE VISUALIZACIÓN ====================
 
   verEquipo(id: number): void {
+
     this.Equipos.getEquipo(id).subscribe({
       next: (equipo) => {
         this.equipoDetalle = equipo;
@@ -178,8 +213,7 @@ export class Dashboard implements OnInit {
     // Obtener estadísticas del jugador
     this.estadisticasService.getEstadisticasJugadores().subscribe({
       next: (estadisticas) => {
-        this.estadisticaJugador =
-          estadisticas.find((e) => e.idJugador === jugador.idJugador) || null;
+        this.estadisticaJugador = estadisticas.find((e) => e.idJugador === jugador.idJugador) || null;
         this.tipoDetalle = 'jugador';
         this.mostrarModalDetalle = true;
       },
@@ -191,77 +225,47 @@ export class Dashboard implements OnInit {
     });
   }
 
-  editarEquipo(id: number): void {
-    this.router.navigate(['/edit-team', id]);
-  }
-
-  confirmarEliminarEquipo(equipo: Equipo): void {
-    this.itemAEliminar = {
-      tipo: 'equipo',
-      id: equipo.idEquipo,
-      nombre: equipo.nombre,
-    };
-    this.mostrarModalEliminar = true;
-  }
-
-  eliminarEquipo(): void {
-    if (!this.itemAEliminar) return;
-
-    const id = this.itemAEliminar.id;
-
-    this.Equipos.deleteEquipo(id).subscribe({
-      next: () => {
-        this.notificacion.success(`Equipo "${this.itemAEliminar?.nombre}" eliminado exitosamente`);
-        this.getEquiposAll();
-        this.cerrarModal();
-      },
-      error: (err) => {
-        console.error('Error al eliminar equipo:', err);
-        this.notificacion.error('Error al eliminar el equipo');
-        this.cerrarModal();
-      },
-    });
-  }
-
-  // ==================== ACCIONES DE TORNEOS ====================
-
   verTorneo(id: number): void {
-    this.Torneos.getTorneo(id).subscribe({
-      next: (torneo) => {
-        this.torneoDetalle = torneo;
 
-        // Obtener todos los partidos del torneo
-        this.Partidos.getMatches().subscribe({
-          next: (partidos) => {
-            this.partidosTorneo = partidos.filter((p) => p.idTorneo === id);
+    this.Torneos.getTorneosActivos().subscribe({
+      next: (torneos) => {
+        const torneo = torneos.find((t) => t.idTorneo === id);
+        if (torneo) {
+          this.torneoDetalle = torneo;
 
-            // Obtener equipos únicos de los partidos
-            const equipoIds = new Set<number>();
-            this.partidosTorneo.forEach((p) => {
-              equipoIds.add(p.idEquipoLocal);
-              equipoIds.add(p.idEquipoVisitante);
-            });
+          // Obtener todos los partidos del torneo
+          this.UltimosPartidos.getUltimosPartidos().subscribe({
+            next: (partidos) => {
+              this.partidosTorneo = partidos.filter((p) => p.idTorneo === id);
 
-            // Obtener todos los equipos
-            this.Equipos.getEquipos().subscribe({
-              next: (equipos) => {
-                this.equiposTorneo = equipos.filter((e) => equipoIds.has(e.idEquipo));
-                this.tipoDetalle = 'torneo';
-                this.mostrarModalDetalle = true;
-              },
-              error: (err) => {
-                console.error('Error al cargar equipos:', err);
-                this.tipoDetalle = 'torneo';
-                this.mostrarModalDetalle = true;
-              },
-            });
-          },
-          error: (err) => {
-            console.error('Error al cargar partidos:', err);
-            this.tipoDetalle = 'torneo';
-            this.mostrarModalDetalle = true;
-          },
-        });
+              // Obtener equipos únicos de los partidos
+              const equipoIds = new Set<number>();
+              this.partidosTorneo.forEach((p) => {
+                equipoIds.add(p.idEquipoLocal);
+                equipoIds.add(p.idEquipoVisitante);
+              });
+
+              // Obtener todos los equipos
+              this.Equipos.getEquipos().subscribe({
+                next: (equipos) => {
+                  this.equiposTorneo = equipos.filter((e) => equipoIds.has(e.idEquipo));
+                  this.tipoDetalle = 'torneo';
+                  this.mostrarModalDetalle = true;
+                },
+                error: (err) => {
+                  console.error('Error al cargar equipos:', err);
+                  this.tipoDetalle = 'torneo';
+                  this.mostrarModalDetalle = true;
+                },
+              });
+            },
+            error: (err) => {
+              console.error('Error al cargar partidos:', err);
+              this.tipoDetalle = 'torneo';
+              this.mostrarModalDetalle = true;
+            },
+          });
+        }
       },
       error: (err) => {
         console.error('Error al cargar torneo:', err);
@@ -270,41 +274,8 @@ export class Dashboard implements OnInit {
     });
   }
 
-  editarTorneo(id: number): void {
-    this.router.navigate(['/edit-tournament', id]);
-  }
-
-  confirmarEliminarTorneo(torneo: Torneo): void {
-    this.itemAEliminar = {
-      tipo: 'torneo',
-      id: torneo.idTorneo,
-      nombre: torneo.nombre,
-    };
-    this.mostrarModalEliminar = true;
-  }
-
-  eliminarTorneo(): void {
-    if (!this.itemAEliminar) return;
-
-    const id = this.itemAEliminar.id;
-
-    this.Torneos.deleteTorneo(id).subscribe({
-      next: () => {
-        this.notificacion.success(`Torneo "${this.itemAEliminar?.nombre}" eliminado exitosamente`);
-        this.getTorneosActivos();
-        this.cerrarModal();
-      },
-      error: (err) => {
-        console.error('Error al eliminar torneo:', err);
-        this.notificacion.error('Error al eliminar el torneo');
-        this.cerrarModal();
-      },
-    });
-  }
-
-  // ==================== ACCIONES DE PARTIDOS ====================
-
   verPartido(id: number): void {
+
     this.Partidos.getMatch(id).subscribe({
       next: (partido) => {
         this.partidoDetalle = partido;
@@ -318,62 +289,6 @@ export class Dashboard implements OnInit {
     });
   }
 
-  editarPartido(id: number): void {
-    this.router.navigate(['/edit-match', id]);
-  }
-
-  confirmarEliminarPartido(partido: Partido): void {
-    this.itemAEliminar = {
-      tipo: 'partido',
-      id: partido.idPartido,
-      nombre: `${partido.equipoA} vs ${partido.equipoB}`,
-    };
-    this.mostrarModalEliminar = true;
-  }
-
-  eliminarPartido(): void {
-    if (!this.itemAEliminar) return;
-
-    const id = this.itemAEliminar.id;
-
-    this.Partidos.deleteMatch(id).subscribe({
-      next: () => {
-        this.notificacion.success('Partido eliminado exitosamente');
-        this.getUltimosPartidos();
-        this.getMatchesAll();
-        this.cerrarModal();
-      },
-      error: (err) => {
-        console.error('Error al eliminar partido:', err);
-        this.notificacion.error('Error al eliminar el partido');
-        this.cerrarModal();
-      },
-    });
-  }
-
-  // ==================== MODAL DE CONFIRMACIÓN ====================
-
-  confirmarEliminacion(): void {
-    if (!this.itemAEliminar) return;
-
-    switch (this.itemAEliminar.tipo) {
-      case 'equipo':
-        this.eliminarEquipo();
-        break;
-      case 'torneo':
-        this.eliminarTorneo();
-        break;
-      case 'partido':
-        this.eliminarPartido();
-        break;
-    }
-  }
-
-  cerrarModal(): void {
-    this.mostrarModalEliminar = false;
-    this.itemAEliminar = null;
-  }
-
   cerrarModalDetalle(): void {
     this.mostrarModalDetalle = false;
     this.tipoDetalle = null;
@@ -385,40 +300,5 @@ export class Dashboard implements OnInit {
     this.partidosTorneo = [];
     this.estadisticaEquipo = null;
     this.estadisticaJugador = null;
-  }
-
-  ngOnInit(): void {
-    // Verificar autenticación y rol
-    if (!this.authService.isAuthenticated()) {
-      this.notificacion.warning('Debes iniciar sesión para acceder al dashboard');
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    this.isAdmin = this.authService.isAdmin();
-
-    // Si no es admin, redirigir al dashboard de usuario
-    if (!this.isAdmin) {
-      this.router.navigate(['/dashboard-usuario']);
-      return;
-    }
-
-    this.getMatchesAll();
-    this.getEquiposAll();
-    this.getTorneosActivos();
-    this.getUltimosPartidos();
-
-    this.titleService.setTitle('Dashboard Admin - Gestión de Torneos');
-    this.metaService.addTags([
-      {
-        name: 'description',
-        content: 'Panel de control para gestionar torneos, equipos y partidos',
-      },
-      { property: 'og:title', content: 'Dashboard - Gestión de Torneos' },
-      {
-        property: 'og:description',
-        content: 'Administra tus torneos y equipos desde un solo lugar',
-      },
-    ]);
   }
 }

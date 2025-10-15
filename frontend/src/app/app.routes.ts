@@ -11,10 +11,12 @@ import { EditMatch } from './auth/edit-match/edit-match';
 import { EditTeam } from './auth/edit-team/edit-team';
 import { EditTournament } from './auth/edit-tournament/edit-tournament';
 import { CambiarPassword } from './auth/cambiar-password/cambiar-password';
+import { DashboardUsuario } from './pages/dashboard-usuario/dashboard-usuario';
 
 export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'dashboard', component: Dashboard },
+  { path: 'dashboard-usuario', component: DashboardUsuario },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'form-tournament', component: FormTournament },

@@ -42,3 +42,62 @@
   object-fit: contain;
   transition: transform 0.2s ease;
 }
+
+/* Estilos para el dropdown de usuario */
+.dropdown-menu {
+  background-color: #2c2c2c;
+  border: 1px solid var(--color-green-light);
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+  color: white;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-green-dark);
+  color: var(--color-green-light);
+}
+
+.dropdown-item:active {
+  background-color: var(--color-green-light);
+  color: #191a19;
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.text-danger {
+  color: #ff6b6b !important;
+}
+
+.text-danger:hover {
+  background-color: rgba(255, 107, 107, 0.1) !important;
+  color: #ff6b6b !important;
+}
+
+/* Indicador de usuario activo */
+.nav-link.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 5px;
+  }
+
+  .dropdown-item {
+    padding: 8px 15px;
+  }
+}

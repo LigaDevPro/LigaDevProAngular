@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
   <div class="container d-flex justify-content-between">
-    <a class="navbar-brand d-flex align-items-center gap-2 ms-0" href="index.html">
+    <a class="navbar-brand d-flex align-items-center gap-2 ms-0" routerLink="/">
       <img src="/icon/iconpag.png" alt="Logo" class="logo-icon" />
       <span class="d-none d-sm-inline">LigaDevPro</span>
     </a>
@@ -17,22 +17,61 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto gap-4 gap-lg-5 mt-3 mt-lg-0">
+      <ul class="navbar-nav ms-auto gap-2 gap-lg-5 mt-3 mt-lg-0 align-items-lg-center">
+        <!-- Links comunes -->
         <li class="nav-item">
-          <a class="nav-link" href="/">Inicio</a>
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Inicio
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">Quiénes somos</a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">Quiénes somos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Panel</a>
+          <a class="nav-link" [routerLink]="getDashboardLink()" routerLinkActive="active">Panel</a>
+        </li>
+
+        <!-- Botones cuando NO está logueado -->
+        @if (!isLoggedIn) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Iniciar Sesión</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Iniciar Sesión</a>
+          <a class="nav-link fw-bold" routerLink="/register" routerLinkActive="active"
+            >REGISTRARSE</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">REGISTRARSE</a>
+        }
+
+        <!-- Botones cuando SÍ está logueado -->
+        @if (isLoggedIn) {
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            👤 {{ nombreUsuario }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/cambiar-password"> 🔐 Cambiar Contraseña </a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button class="dropdown-item text-danger" (click)="logout()">🚪 Cerrar Sesión</button>
+            </li>
+          </ul>
         </li>
+        }
       </ul>
     </div>
   </div>
