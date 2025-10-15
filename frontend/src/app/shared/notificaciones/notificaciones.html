@@ -1,0 +1,9 @@
+<div class="notificaciones-container">
+  @for (notif of notificaciones; track notif.id) {
+  <div class="notificacion notificacion-{{ notif.tipo }}">
+    <div class="notificacion-icono">{{ getIcono(notif.tipo) }}</div>
+    <div class="notificacion-mensaje">{{ notif.mensaje }}</div>
+    <button class="notificacion-cerrar" (click)="cerrar(notif.id)" aria-label="Cerrar">×</button>
+  </div>
+  }
+</div>
